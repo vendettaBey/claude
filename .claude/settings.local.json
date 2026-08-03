@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(php -v)",
+      "PowerShell(composer --version)",
+      "PowerShell($s=\"C:\\\\Users\\\\Vendetta\\\\Desktop\\\\websitem\\\\claude\\\\frontend\\\\src\"; Test-Path $s; \\(Get-ChildItem $s -Force -Recurse | Measure-Object\\).Count; Get-ChildItem $s -Force | Format-Table Name,Mode -AutoSize; Write-Output \"=== root ===\"; Get-ChildItem \"C:\\\\Users\\\\Vendetta\\\\Desktop\\\\websitem\\\\claude\" -Force -Recurse -Depth 1 | Select-Object -First 40 FullName)"
+    ]
+  }
+}

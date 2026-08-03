@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Yasal ve hata sayfaları taranabilir, ancak API uçları taranmamalı.
+Disallow: /api/
+
+Sitemap: https://ulkuyazilim.com/sitemap.xml

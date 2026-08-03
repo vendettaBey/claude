@@ -1,0 +1,576 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   Ülkü Yazılım tasarım sistemi
+   Koyu, teknik ve premium bir palet. Gövde metni (#A8B4C6) zemin (#05060A)
+   üzerinde ~9:1 kontrast verir; WCAG AA fazlasıyla karşılanır.
+--------------------------------------------------------------------------- */
+@theme {
+  --font-display: 'Sora Variable', 'Sora', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* Zemin katmanları */
+  --color-ink-950: #05060a;
+  --color-ink-900: #080a11;
+  --color-ink-850: #0a0d16;
+  --color-ink-800: #0e121d;
+  --color-ink-700: #151a28;
+  --color-ink-600: #1e2536;
+
+  /* Metin */
+  --color-fg: #eef2f8;
+  --color-fg-muted: #a8b4c6;
+  --color-fg-dim: #8494ab;
+
+  /* Vurgular */
+  --color-brand-400: #7cc4ff;
+  --color-brand-500: #3d9bff;
+  --color-brand-600: #2563eb;
+  --color-violet-glow: #8b5cf6;
+  --color-cyan-glow: #22d3ee;
+
+  --radius-card: 1.25rem;
+
+  --animate-marquee: marquee var(--marquee-duration, 44s) linear infinite;
+  --animate-marquee-reverse: marquee-reverse var(--marquee-duration, 44s) linear infinite;
+  --animate-float-slow: float-slow 20s ease-in-out infinite;
+  --animate-caret: caret-blink 1.1s steps(1) infinite;
+  --animate-aurora-spin: aurora-spin 26s linear infinite;
+  --animate-scene-float: scene-float 12s ease-in-out infinite;
+  --animate-scroll-hint: scroll-hint 2.4s ease-in-out infinite;
+}
+
+/* Konik gradient aurora: tek katmanda üç vurgu rengini birden taşır ve
+   yavaşça dönerek radial kürelere göre çok daha canlı bir ışık verir. */
+@keyframes aurora-spin {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.08);
+  }
+  to {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* Hero maketine hafif 3B derinlik kazandıran süzülme. */
+@keyframes scene-float {
+  0%,
+  100% {
+    transform: perspective(1200px) rotateY(0deg) rotateX(0deg) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: perspective(1200px) rotateY(-4deg) rotateX(2deg) translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes scroll-hint {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+/* Scroll ile sürülen ilerleme çubuğu (JS'siz, compositor üzerinde çalışır). */
+@keyframes scroll-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-reverse {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(3%, -4%, 0) scale(1.06);
+  }
+  66% {
+    transform: translate3d(-3%, 3%, 0) scale(0.95);
+  }
+}
+
+@keyframes caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Radix Accordion içerik yüksekliği animasyonu */
+@keyframes accordion-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Temel katman
+--------------------------------------------------------------------------- */
+@layer base {
+  * {
+    border-color: color-mix(in oklab, var(--color-fg) 10%, transparent);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Lenis devredeyken tarayıcının kendi yumuşak kaydırması devre dışı kalmalı */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  html.lenis {
+    scroll-behavior: auto;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  body {
+    background-color: var(--color-ink-950);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    /* Yatay taşmaya karşı güvenlik kilidi */
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Klavye kullanıcıları için her zaman görünür odak halkası */
+  :focus-visible {
+    outline: 2px solid var(--color-brand-400);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-brand-500) 45%, transparent);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink-900);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-ink-600);
+    border-radius: 999px;
+    border: 2px solid var(--color-ink-900);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in oklab, var(--color-brand-500) 60%, var(--color-ink-600));
+  }
+
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100%;
+  }
+
+  img,
+  video {
+    height: auto;
+  }
+
+  /* Form alanlarında tarayıcının otomatik doldurma rengini ezme */
+  input:-webkit-autofill,
+  textarea:-webkit-autofill {
+    -webkit-text-fill-color: var(--color-fg);
+    -webkit-box-shadow: 0 0 0 1000px var(--color-ink-800) inset;
+    caret-color: var(--color-fg);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Yeniden kullanılabilir yardımcılar
+--------------------------------------------------------------------------- */
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 2.5rem;
+  }
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-brand-400) 0%,
+    var(--color-cyan-glow) 35%,
+    var(--color-violet-glow) 75%,
+    var(--color-brand-400) 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility card-surface {
+  position: relative;
+  background: linear-gradient(
+    160deg,
+    color-mix(in oklab, var(--color-ink-800) 92%, transparent),
+    color-mix(in oklab, var(--color-ink-900) 96%, transparent)
+  );
+  border: 1px solid color-mix(in oklab, var(--color-fg) 8%, transparent);
+  border-radius: var(--radius-card);
+}
+
+@utility glass-panel {
+  background: color-mix(in oklab, var(--color-ink-900) 70%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--color-fg) 10%, transparent);
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--color-fg) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-fg) 4%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* ---------------------------------------------------------------------------
+   "Mavi Baskı" konsepti
+   Site kendi teknik çizimi gibi davranır: pafta ızgarası, ölçü çizgileri,
+   kesit köşe işaretleri ve monospace anotasyonlar.
+--------------------------------------------------------------------------- */
+
+/* Pafta ızgarası: ince yardımcı çizgiler + kalın ana bölme çizgileri.
+   Tek katmanlı düz grid yerine gerçek çizim kâğıdı hissi verir. */
+@utility bg-blueprint {
+  background-image:
+    /* ana bölmeler */
+    linear-gradient(to right, color-mix(in oklab, var(--color-brand-500) 9%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-brand-500) 9%, transparent) 1px, transparent 1px),
+    /* yardımcı bölmeler */
+    linear-gradient(to right, color-mix(in oklab, var(--color-fg) 3%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-fg) 3%, transparent) 1px, transparent 1px);
+  background-size:
+    96px 96px,
+    96px 96px,
+    24px 24px,
+    24px 24px;
+}
+
+/* Anotasyon metni: paftadaki elle yazılmış küçük teknik notların karşılığı. */
+@utility annotation {
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-fg-dim);
+}
+
+/* Kesit köşe işaretleri — kartın dört köşesine L biçiminde nişan çizgileri.
+   Kart tam çerçeve yerine "çizime alınmış alan" gibi okunur. */
+@utility corner-marks {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    border-color: color-mix(in oklab, var(--color-brand-400) 45%, transparent);
+    transition:
+      width 0.35s var(--ease-draw, cubic-bezier(0.16, 1, 0.3, 1)),
+      height 0.35s var(--ease-draw, cubic-bezier(0.16, 1, 0.3, 1)),
+      border-color 0.35s ease;
+  }
+
+  /* Kart `overflow: hidden` taşıdığı için işaretler kenarın hemen içinde
+     konumlanır; dışarı taşarsa kırpılırlar.
+     DİKKAT: `border-top: 1px solid` kısayolu kullanılmamalı — renk belirtilmemiş
+     bir kenarlık kısayolu `border-*-color` değerini `currentColor`'a sıfırlar ve
+     yukarıda ayarlanan vurgu rengini siler. Bu yüzden width/style ayrı yazılır. */
+  /* sol üst */
+  &::before {
+    top: 0;
+    left: 0;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-left-style: solid;
+    border-top-left-radius: var(--radius-card);
+  }
+
+  /* sağ alt */
+  &::after {
+    right: 0;
+    bottom: 0;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-bottom-right-radius: var(--radius-card);
+  }
+
+  &:hover::before,
+  &:hover::after,
+  &:focus-within::before,
+  &:focus-within::after {
+    width: 30px;
+    height: 30px;
+    border-color: color-mix(in oklab, var(--color-brand-400) 85%, transparent);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Kart çizim sekansı: "önce çizilir, sonra dolar".
+   Kart yüzeyi ve kenarlığı başlangıçta yoktur; SVG kontur çizimi bittikten
+   sonra dolgu gelir. Böylece her kart, paftadan inşa ediliyormuş gibi görünür.
+--------------------------------------------------------------------------- */
+/* Bu blok bilinçli olarak `@utility` değil düz CSS: hem kartın kendisini hem
+   içindeki SVG konturunu `[data-drawn]` durumuna göre sürmesi gerekiyor ve
+   seçici kontrolünün tamamen elimizde olması gerekiyor. */
+@layer components {
+  .card-draw {
+    /* Kenarlık rengi doğrudan değil özel değişken üzerinden verilir:
+       aynı bloktaki `border-color` bildirimi derleyici optimizasyonunda
+       düşürülüyordu, değişken güvenle taşınıyor. */
+    --card-border: transparent;
+
+    background: transparent;
+    border-color: var(--card-border);
+    /* Gecikme, kontur çizimi (0.7 sn) yarılandığında dolguyu başlatır. */
+    transition:
+      background 0.55s ease 0.4s,
+      border-color 0.55s ease 0.4s;
+  }
+
+  /* Kontur: pathLength="1" sayesinde kartın gerçek çevresi ne olursa olsun
+     dashoffset 1 → 0 aralığında ilerler. */
+  .card-draw svg rect {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .card-draw[data-drawn='true'] {
+    --card-border: color-mix(in oklab, var(--color-fg) 8%, transparent);
+
+    background: linear-gradient(
+      160deg,
+      color-mix(in oklab, var(--color-ink-800) 92%, transparent),
+      color-mix(in oklab, var(--color-ink-900) 96%, transparent)
+    );
+  }
+
+  .card-draw[data-drawn='true'] svg rect {
+    stroke-dashoffset: 0;
+  }
+
+  /* Hareket azaltma: çizim sekansı yok, kart doğrudan dolu ve konturu tam. */
+  @media (prefers-reduced-motion: reduce) {
+    .card-draw {
+      --card-border: color-mix(in oklab, var(--color-fg) 8%, transparent);
+
+      background: linear-gradient(
+        160deg,
+        color-mix(in oklab, var(--color-ink-800) 92%, transparent),
+        color-mix(in oklab, var(--color-ink-900) 96%, transparent)
+      );
+    }
+    .card-draw svg rect {
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+/* Ölçü çizgisi: iki ucunda dikey serif bulunan yatay hat (|————————|). */
+@utility dimension-rule {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    color-mix(in oklab, var(--color-brand-500) 40%, transparent),
+    color-mix(in oklab, var(--color-brand-500) 6%, transparent)
+  );
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    width: 1px;
+    height: 7px;
+    background: color-mix(in oklab, var(--color-brand-500) 45%, transparent);
+  }
+
+  &::before {
+    left: 0;
+  }
+  &::after {
+    right: 0;
+    background: color-mix(in oklab, var(--color-brand-500) 12%, transparent);
+  }
+}
+
+@utility bg-dots {
+  background-image: radial-gradient(
+    color-mix(in oklab, var(--color-fg) 10%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+}
+
+@utility mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+}
+
+@utility gpu {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Marquee'nin hover'da yavaşlaması */
+@utility marquee-track {
+  display: flex;
+  width: max-content;
+  animation: var(--animate-marquee);
+}
+
+/* Konik aurora katmanı — tek öğede mavi/mor/turkuaz geçişi taşır. */
+@utility aurora-orb {
+  border-radius: 50%;
+  background: conic-gradient(
+    from 80deg,
+    var(--color-brand-600),
+    transparent 32%,
+    var(--color-violet-glow),
+    transparent 68%,
+    var(--color-cyan-glow)
+  );
+  /* Renklerin zeminle kaynaşması için: ışık gibi davranır, boya gibi değil. */
+  mix-blend-mode: screen;
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll ile sürülen ilerleme çubuğu.
+   Destekleyen tarayıcılarda ana iş parçacığında hiç JS çalışmaz; animasyon
+   doğrudan kaydırma konumuna bağlanır. Desteklemeyenlerde React tarafındaki
+   yedek uygulama devreye girer (bkz. ScrollProgress.tsx).
+--------------------------------------------------------------------------- */
+@supports (animation-timeline: scroll()) {
+  .scroll-progress-css {
+    transform-origin: 0 50%;
+    animation: scroll-progress linear;
+    animation-timeline: scroll();
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Erişilebilirlik: hareket azaltma tercihi her şeyin önündedir.
+--------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobilde pahalı blur efektlerini hafiflet */
+@media (width < 48rem) {
+  .glass-panel {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}

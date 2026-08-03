@@ -1,0 +1,135 @@
+﻿# Ülkü Yazılım — üretim benzeri kurulum
+#
+# Tek alan adı altında:
+#   /       → Nginx içindeki React build'i
+#   /api/*  → Nginx üzerinden PHP-FPM'e (Laravel)
+# Bu sayede CORS'a hiç gerek kalmaz.
+#
+# Kullanım:
+#   cp backend/.env.example backend/.env  (ve değerleri doldurun)
+#   docker compose up -d --build
+
+name: ulku-yazilim
+
+# Log dosyalarının diski doldurmaması için ortak döndürme ayarı.
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    restart: unless-stopped
+    logging: *default-logging
+    env_file:
+      - backend/.env
+    environment:
+      # Laravel'in Nginx'ten gelen public dizinini paylaşabilmesi için
+      RUN_MIGRATIONS: "true"
+      DB_HOST: mysql
+      REDIS_HOST: redis
+      CACHE_STORE: redis
+      QUEUE_CONNECTION: redis
+      SESSION_DRIVER: redis
+    volumes:
+      # Nginx'in Laravel public dizinine erişmesi için paylaşılan hacim
+      - laravel-public:/var/www/html/public
+      - laravel-storage:/var/www/html/storage
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    networks:
+      - internal
+
+  queue:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    restart: unless-stopped
+    logging: *default-logging
+    env_file:
+      - backend/.env
+    environment:
+      # Kuyruk işçisi migration çalıştırmaz — bunu yalnızca `app` yapar.
+      RUN_MIGRATIONS: "false"
+      DB_HOST: mysql
+      REDIS_HOST: redis
+      CACHE_STORE: redis
+      QUEUE_CONNECTION: redis
+    command: ["php", "artisan", "queue:work", "--tries=3", "--max-time=3600", "--sleep=3"]
+    volumes:
+      - laravel-storage:/var/www/html/storage
+    depends_on:
+      - app
+    networks:
+      - internal
+
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+      args:
+        VITE_SITE_URL: ${SITE_URL:-https://ulkuyazilim.com}
+        # Boş bırakılır: istekler aynı origin'e gider.
+        VITE_API_BASE_URL: ""
+    restart: unless-stopped
+    logging: *default-logging
+    ports:
+      - "${HTTP_PORT:-8080}:80"
+    volumes:
+      - laravel-public:/var/www/html/public:ro
+    depends_on:
+      - app
+    networks:
+      - internal
+
+  mysql:
+    image: mysql:8.4
+    restart: unless-stopped
+    logging: *default-logging
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE:-ulku_yazilim}
+      MYSQL_USER: ${DB_USERNAME:-ulku}
+      MYSQL_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD tanımlanmalı}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?DB_ROOT_PASSWORD tanımlanmalı}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - internal
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    logging: *default-logging
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory", "256mb", "--maxmemory-policy", "allkeys-lru"]
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks:
+      - internal
+
+volumes:
+  mysql-data:
+  redis-data:
+  laravel-public:
+  laravel-storage:
+
+networks:
+  internal:
+    driver: bridge
