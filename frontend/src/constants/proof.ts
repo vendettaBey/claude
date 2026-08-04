@@ -56,7 +56,7 @@ export const featuredReference = {
   location: 'Kayseri',
   type: 'Dijital davet · Web uygulaması',
   description:
-    'Misafirlerin daveti keşfettiği, katılım durumunu bildirdiği ve düğün gününe dair tüm ayrıntılara tek yerden ulaştığı kişiselleştirilmiş bir dijital deneyim.',
+    'Misafirlerin daveti gördüğü, katılım bildirdiği ve etkinlik ayrıntılarına tek yerden ulaştığı kişiselleştirilmiş web uygulaması.',
   features: [
     'RSVP ve misafir planlama',
     'Geri sayım ve etkinlik programı',

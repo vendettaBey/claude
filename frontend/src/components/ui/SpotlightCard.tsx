@@ -93,7 +93,7 @@ export function SpotlightCard({
       transition={{ type: 'spring', stiffness: 260, damping: 22 }}
       className={cn(
         // Kart tam çerçeve yerine kesit köşe işaretleriyle tanımlanır.
-        'corner-marks group relative isolate overflow-hidden rounded-card border',
+        'corner-marks group rounded-card relative isolate overflow-hidden border',
         drawEnabled ? 'card-draw' : 'card-surface',
         'transition-colors duration-300 hover:border-white/20',
         className,
@@ -131,7 +131,7 @@ export function SpotlightCard({
           {/* Kenar ışığının içeriyi doldurmaması için opak iç yüzey */}
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute inset-px -z-10 rounded-[inherit] bg-ink-900/95"
+            className="spotlight-card-inner bg-ink-900/95 pointer-events-none absolute inset-px -z-10 rounded-[inherit]"
           />
           {/* Yüzeyde gezen yumuşak huzme */}
           <motion.span

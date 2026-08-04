@@ -31,44 +31,42 @@ export const trustItems: { label: string; icon: LucideIcon }[] = [
 
 export const valueProps: ValueProp[] = [
   {
-    title: 'İhtiyacı anlayarak başlarız',
-    description:
-      'Önce neye ihtiyacınız olduğunu, hedef kitlenizi ve işletme süreçlerinizi anlamaya çalışırız.',
+    title: 'Önce sorunu netleştiririz',
+    description: 'Hedefinizi, kullanıcıyı ve bugün zaman kaybettiren adımları birlikte çıkarırız.',
     icon: Ear,
     accent: '#3d9bff',
   },
   {
-    title: 'Modern teknolojiler kullanırız',
+    title: 'Aracı ihtiyaca göre seçeriz',
     description:
-      'Projeleri güncel, güvenli ve sürdürülebilir teknolojilerle geliştiririz. Teknoloji seçimlerini yalnızca popüler oldukları için değil, projenin gerçek ihtiyaçlarına göre yaparız.',
+      'Teknolojiyi popülerliğine değil; hız, güvenlik ve bakım maliyetine göre belirleriz.',
     icon: Cpu,
     accent: '#a78bfa',
   },
   {
-    title: 'Performansı önemseriz',
+    title: 'Kullanıcıyı bekletmeyiz',
     description:
-      'Hızlı açılan, mobil cihazlarda iyi çalışan ve kullanıcıyı bekletmeyen deneyimler oluştururuz.',
+      'Telefon, tablet ve masaüstünde hızlı açılan, akıcı çalışan ekranlar geliştiririz.',
     icon: Zap,
     accent: '#22d3ee',
   },
   {
-    title: 'Geliştirilebilir sistemler kurarız',
+    title: 'Büyümeye hazır kurarız',
     description:
-      'Projenin ileride yeni özelliklerle büyüyebilmesini sağlayan düzenli ve ölçeklenebilir altyapılar kurarız.',
+      'Yeni özellikler eklenirken baştan yazılmak zorunda kalmayan bir altyapı bırakırız.',
     icon: Layers,
     accent: '#34d399',
   },
   {
-    title: 'Süreci şeffaf yürütürüz',
-    description:
-      'Projenin hangi aşamada olduğunu açık biçimde paylaşır, teknik konuları anlaşılır bir dille anlatırız.',
+    title: 'Sürpriz bırakmayız',
+    description: 'Aşamaları, kararları ve kapsam değişikliklerini anlaşılır biçimde paylaşırız.',
     icon: Eye,
     accent: '#f472b6',
   },
   {
-    title: 'Yayından sonra da yanınızdayız',
+    title: 'Yayından sonra devam ederiz',
     description:
-      'Proje teslim edildikten sonra bakım, geliştirme ve teknik destek hizmetleri sunarız.',
+      'Bakım, teknik destek ve yeni özelliklerde aynı sistem bilgisiyle yanınızda kalırız.',
     icon: LifeBuoy,
     accent: '#fbbf24',
   },
@@ -93,60 +91,60 @@ export const faqItems: FaqItem[] = [
   {
     question: 'Bir web sitesi ne kadar sürede hazırlanır?',
     answer:
-      'Projenin kapsamına göre değişir. Standart bir kurumsal web sitesi ile özel fonksiyonlara sahip bir web uygulamasının geliştirme süreleri aynı değildir. İhtiyaç analizi sonrasında tahmini süre ve proje planı paylaşılır.',
+      'Süre projenin kapsamına göre belirlenir. İhtiyaç analizinden sonra aşamaları ve tahmini teslim tarihini net bir planla paylaşırız.',
   },
   {
     question: 'Web sitesi fiyatları nasıl belirlenir?',
     answer:
-      'Fiyat; sayfa sayısı, özel tasarım ihtiyacı, yönetim paneli, entegrasyonlar, çoklu dil desteği ve özel fonksiyonlara göre belirlenir.',
+      'Fiyatı sayfa sayısı, özel tasarım, yönetim paneli, entegrasyonlar ve ihtiyaç duyulan işlevler belirler.',
   },
   {
     question: 'Hazır tema mı kullanıyorsunuz?',
     answer:
-      'Projenin bütçesine ve ihtiyacına göre farklı yöntemler değerlendirilebilir. Ancak tasarım ve teknik altyapı markanın ihtiyaçlarına uygun hale getirilir. Özel projelerde tamamen ihtiyaca göre geliştirilen arayüzler hazırlanır.',
+      'Projenin bütçesi ve hedefi belirleyicidir; markayı hazır bir temaya uydurmayız. Özel ihtiyaçlarda arayüzü ve işlevleri sıfırdan tasarlarız.',
   },
   {
     question: 'Web sitemi kendim yönetebilir miyim?',
     answer:
-      'İhtiyaç halinde içerikleri, görselleri, hizmetleri veya diğer alanları yönetebileceğiniz kullanıcı dostu bir yönetim paneli geliştirilebilir.',
+      'Evet. İçerik, görsel ve hizmetleri kod bilgisi olmadan güncelleyebileceğiniz bir yönetim paneli geliştirebiliriz.',
   },
   {
     question: 'Mobil uyumlu olacak mı?',
-    answer: 'Tüm projeler telefon, tablet ve masaüstü ekranlara uyumlu olacak şekilde hazırlanır.',
+    answer: 'Evet. Tüm projeleri telefon, tablet ve masaüstü ekranlarda test ederek teslim ederiz.',
   },
   {
     question: 'SEO çalışması yapılıyor mu?',
     answer:
-      'Projelerde arama motorlarının siteyi doğru şekilde okuyabilmesi için temel teknik SEO altyapısı hazırlanır. Kapsamlı içerik ve sıralama çalışmaları ayrıca planlanabilir.',
+      'Evet. Temel teknik SEO altyapısını kurarız; içerik ve sıralama çalışmasını ihtiyaç hâlinde ayrıca planlarız.',
   },
   {
     question: 'Web sitesi yayınlandıktan sonra destek veriyor musunuz?',
     answer:
-      'Evet. Bakım, teknik destek, güvenlik güncellemeleri ve yeni özellik geliştirme hizmetleri sunulabilir.',
+      'Evet. Bakım, güvenlik güncellemeleri, hata giderme ve yeni özellik geliştirme desteği sunarız.',
   },
   {
     question: 'Mevcut web sitemi yenileyebilir misiniz?',
     answer:
-      'Evet. Mevcut sitenin tasarımı, hızı, mobil uyumluluğu ve teknik altyapısı incelenerek yenileme planı oluşturulabilir.',
+      'Evet. Tasarım, hız, mobil uyumluluk ve teknik altyapıyı inceleyip öncelikli bir yenileme planı çıkarırız.',
   },
   {
     question: 'Proje tesliminden sonra kaynak kod ve tasarım bana mı ait olur?',
     answer:
-      'Evet. Proje teslim edildiğinde kaynak kod, tasarım dosyaları ve tüm erişim bilgileri size teslim edilir. Bir başka ekiple devam etmek istemeniz hâlinde bağımlı kalmazsınız.',
+      'Evet. Kaynak kodu, tasarım dosyalarını ve erişim bilgilerini size teslim ederiz; bize bağımlı kalmazsınız.',
   },
   {
     question: 'Alan adı ve barındırma (hosting) hizmetini siz mi sağlıyorsunuz?',
     answer:
-      'Alan adı ve barındırma hesapları size ait olacak şekilde açılır; kurulumu ve teknik yönetimini biz üstleniriz. İsterseniz mevcut hesaplarınız üzerinden, isterseniz süreç içinde birlikte açacağımız yeni hesaplarla ilerleriz.',
+      'Hesaplar sizin adınıza açılır; kurulumunu ve teknik yönetimini biz yaparız. Mevcut hesaplarınız varsa onları da kullanabiliriz.',
   },
   {
     question: 'İstanbul dışındayım, süreç uzaktan nasıl işliyor?',
     answer:
-      'Görüşmeler, tasarım onayları ve proje takibi tamamen uzaktan yürütülebilir. Video görüşme, e-posta ve yazılı paylaşımlarla süreç aynı şeffaflıkla ilerler; fiziksel bir toplantı şart değildir.',
+      'Süreci video görüşmeleri ve yazılı onaylarla tamamen uzaktan yürütebiliriz. Fiziksel toplantı gerekmez.',
   },
   {
     question: 'Proje sürerken ek bir özellik istersem ne olur?',
     answer:
-      'Kapsamı belirgin biçimde büyütmeyen küçük değişiklik talepleri genellikle sürecin doğal bir parçasıdır. Kapsamı gerçekten büyüten talepler için önce süre ve maliyet etkisini konuşur, birlikte karar veririz — sürpriz fatura olmaz.',
+      'Önce talebin süre ve maliyet etkisini paylaşırız. Onayınızdan sonra kapsama ekleriz; sürpriz fatura çıkarmazız.',
   },
 ]

@@ -53,11 +53,9 @@ export function SheetLabel({
         className,
       )}
     >
-      {index && (
-        <span className="annotation shrink-0 text-brand-400 tabular-nums">{index}</span>
-      )}
+      {index && <span className="annotation text-brand-400 shrink-0 tabular-nums">{index}</span>}
       <span aria-hidden="true" className="dimension-rule w-10 shrink-0 sm:w-16" />
-      <span className="annotation shrink-0 text-fg-muted">{children}</span>
+      <span className="annotation text-fg-muted shrink-0">{children}</span>
       <span
         aria-hidden="true"
         className="dimension-rule hidden w-10 shrink-0 rotate-180 sm:block sm:w-16"
@@ -109,7 +107,7 @@ export function SectionHeading({
         as={as}
         id={id}
         segments={segments}
-        className="max-w-3xl text-3xl leading-[1.12] font-semibold text-balance sm:text-4xl lg:text-[2.9rem]"
+        className="max-w-[46rem] text-3xl leading-[1.12] font-semibold text-balance sm:text-4xl lg:text-[2.9rem]"
       />
       {description &&
         // Düz metin açıklamalar kaydırmayla kelime kelime aydınlanır; bu tek
@@ -119,7 +117,7 @@ export function SectionHeading({
         (typeof description === 'string' ? (
           <ScrubText
             className={cn(
-              'max-w-2xl text-base leading-relaxed text-fg-muted sm:text-lg',
+              'text-fg-muted max-w-[40rem] text-base leading-[1.75] sm:text-lg',
               centered && 'mx-auto',
             )}
           >
@@ -129,7 +127,7 @@ export function SectionHeading({
           <Reveal delay={0.1}>
             <p
               className={cn(
-                'max-w-2xl text-base leading-relaxed text-fg-muted sm:text-lg',
+                'text-fg-muted max-w-[40rem] text-base leading-[1.75] sm:text-lg',
                 centered && 'mx-auto',
               )}
             >

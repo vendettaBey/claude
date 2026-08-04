@@ -18,12 +18,15 @@ export function FAQ() {
           id="sss-baslik"
           index="07"
           eyebrow="Sık Sorulan Sorular"
-          segments={[{ text: 'Aklınıza takılan' }, { text: 'ilk sorular', highlight: true }]}
-          description="Görüşmelerde en sık gelen soruları burada topladık. Listede olmayan bir sorunuz varsa doğrudan yazabilirsiniz."
+          segments={[
+            { text: 'Karar vermeden önce' },
+            { text: 'bilmeniz gerekenler', highlight: true },
+          ]}
+          description="Süre, bütçe, yönetim paneli, SEO ve teslim sonrası destek hakkında kısa cevaplar."
         />
 
         <div className="mx-auto mt-14 max-w-3xl lg:mt-16">
-          <Accordion type="single" collapsible className="flex flex-col gap-3">
+          <Accordion type="single" collapsible className="flex flex-col gap-4">
             {faqItems.map((item, index) => (
               <Reveal3D
                 key={item.question}
@@ -43,12 +46,12 @@ export function FAQ() {
           </Accordion>
 
           <Reveal delay={0.15}>
-            <p className="mt-10 text-center text-sm text-fg-dim">
+            <p className="text-fg-dim mt-10 text-center text-sm">
               Başka bir sorunuz mu var?{' '}
               <button
                 type="button"
                 onClick={() => scrollToSection('#iletisim')}
-                className="font-medium text-brand-400 underline-offset-4 hover:underline"
+                className="text-brand-400 font-medium underline-offset-4 hover:underline"
               >
                 Bize sorun
               </button>

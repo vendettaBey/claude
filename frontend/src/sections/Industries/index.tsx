@@ -50,10 +50,10 @@ export function Industries() {
           index="06"
           eyebrow="Kimler İçin Çalışıyoruz?"
           segments={[
-            { text: 'Dijitalde daha güçlü olmak isteyen' },
+            { text: 'Süreçlerini hızlandırmak isteyen' },
             { text: 'işletmeler için', highlight: true },
           ]}
-          description="Sektör fark etmeksizin, süreçlerini dijitalleştirmek veya dijitaldeki görünürlüğünü güçlendirmek isteyen işletmelerle çalışıyoruz."
+          description="Web sitesini yenilemek, manuel işleri azaltmak veya ekibini tek sistemde çalıştırmak isteyen işletmelerle çalışıyoruz."
         />
 
         <motion.ul
@@ -79,10 +79,10 @@ export function Industries() {
                   type="button"
                   onClick={() => scrollToSection('#iletisim')}
                   className={cn(
-                    'rounded-full border px-5 py-2.5 text-sm transition-all duration-300',
+                    'industry-chip rounded-full border px-5 py-2.5 text-sm transition-all duration-300',
                     isHovered
-                      ? 'scale-105 border-brand-500/50 bg-brand-500/10 text-fg'
-                      : 'border-white/10 bg-white/[0.03] text-fg-muted hover:text-fg',
+                      ? 'border-brand-500/50 bg-brand-500/10 text-fg scale-105'
+                      : 'text-fg-muted hover:text-fg border-white/10 bg-white/[0.03]',
                     isDimmed && 'opacity-40',
                   )}
                 >
@@ -94,12 +94,12 @@ export function Industries() {
         </motion.ul>
 
         <Reveal delay={0.2}>
-          <p className="mt-10 text-center text-sm text-fg-dim">
+          <p className="text-fg-dim mt-10 text-center text-sm">
             Listede kendinizi göremediniz mi?{' '}
             <button
               type="button"
               onClick={() => scrollToSection('#iletisim')}
-              className="font-medium text-brand-400 underline-offset-4 hover:underline"
+              className="text-brand-400 font-medium underline-offset-4 hover:underline"
             >
               İhtiyacınızı anlatın
             </button>

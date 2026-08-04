@@ -26,10 +26,10 @@ export function Proof() {
             eyebrow="Referansımız"
             align="left"
             segments={[
-              { text: 'Yayında olan, gerçek kullanıcılarla' },
-              { text: 'buluşan bir proje.', highlight: true },
+              { text: 'Tasarladık, geliştirdik,' },
+              { text: 'şimdi gerçek kullanıcılar kullanıyor.', highlight: true },
             ]}
-            description="Portfolyomuzda yalnızca tamamladığımız gerçek işleri gösteriyoruz. İlk referansımız, baştan sona özel olarak tasarlayıp geliştirdiğimiz Hatice & Ömer dijital davet deneyimi."
+            description="Hatice & Ömer için davet, katılım bildirimi ve etkinlik bilgilerini tek akışta buluşturan canlı bir web uygulaması geliştirdik."
           />
 
           <Reveal direction="left" className="flex items-center gap-3 lg:pb-2">

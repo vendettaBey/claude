@@ -17,7 +17,7 @@ export const services: Service[] = [
     id: 'kurumsal-web-sitesi',
     title: 'Kurumsal Web Sitesi',
     description:
-      'Markanızı güvenilir ve profesyonel biçimde temsil eden, hızlı, mobil uyumlu ve yönetilebilir kurumsal web siteleri.',
+      'Hızlı, mobil uyumlu ve yönetilebilir; markanızı güvenle temsil eden kurumsal web sitesi.',
     features: [
       'Kuruma özel tasarım',
       'Mobil uyumluluk',
@@ -55,7 +55,7 @@ export const services: Service[] = [
     id: 'web-uygulamasi',
     title: 'Web Uygulaması Geliştirme',
     description:
-      'İş süreçlerini dijitalleştiren, zaman kazandıran ve işletmenin çalışma biçimine uyum sağlayan web tabanlı uygulamalar.',
+      'Randevu, müşteri ve operasyon süreçlerini tek ekranda hızlandıran web uygulamaları.',
     features: [
       'Yönetim panelleri',
       'Müşteri portalları',
@@ -151,7 +151,7 @@ export const services: Service[] = [
     id: 'erp-isletme-yonetimi',
     title: 'İşletme Yönetim Yazılımı (ERP/CRM)',
     description:
-      'CRM, stok, teklif, satış, muhasebe, İK, üretim ve maliyetlendirme gibi ihtiyaçlarınızı hazır paket paylarıyla değil, işletmenize özel modüllerle tek çatı altında topluyoruz.',
+      'CRM, stok, satış, muhasebe ve üretim süreçlerini işletmenize özel modüllerle tek sistemde topluyoruz.',
     features: [
       'CRM ve satış fırsatı takibi',
       'Ürün / stok ve çoklu depo yönetimi',

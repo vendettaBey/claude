@@ -28,8 +28,11 @@ export function Contact() {
           index="08"
           eyebrow="İletişim"
           align="left"
-          segments={[{ text: 'Projenizi anlatın,' }, { text: 'birlikte planlayalım', highlight: true }]}
-          description="İhtiyacınızı yazın; kapsamı, tahmini süreyi ve uygulanabilir seçenekleri birlikte netleştirelim."
+          segments={[
+            { text: 'Sorununuzu anlatın,' },
+            { text: 'net bir yol haritası çıkaralım', highlight: true },
+          ]}
+          description="Teknik ayrıntı gerekmiyor. İhtiyacınızı yazın; kapsamı ve uygulanabilir seçenekleri birlikte netleştirelim."
         />
 
         <div className="mt-14 grid gap-8 lg:mt-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10">
@@ -46,12 +49,12 @@ export function Contact() {
                         : {})}
                       className="card-surface flex items-center gap-4 p-4 transition-colors duration-300 hover:border-white/20"
                     >
-                      <span className="grid size-11 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.03] text-brand-400">
+                      <span className="contact-channel-icon text-brand-400 grid size-11 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.03]">
                         <channel.icon className="size-5" aria-hidden="true" />
                       </span>
                       <span className="min-w-0">
-                        <span className="block text-xs text-fg-dim">{channel.label}</span>
-                        <span className="block truncate text-sm font-medium text-fg">
+                        <span className="text-fg-dim block text-xs">{channel.label}</span>
+                        <span className="text-fg block truncate text-sm font-medium">
                           {channel.value}
                         </span>
                       </span>
@@ -61,20 +64,20 @@ export function Contact() {
               </ul>
 
               <div className="card-surface flex flex-col gap-3 p-5">
-                <p className="flex items-center gap-2.5 text-sm text-fg-muted">
-                  <Clock className="size-4 shrink-0 text-brand-400" aria-hidden="true" />
+                <p className="text-fg-muted flex items-center gap-2.5 text-sm">
+                  <Clock className="text-brand-400 size-4 shrink-0" aria-hidden="true" />
                   {site.workingHours}
                 </p>
-                <p className="flex items-center gap-2.5 text-sm text-fg-muted">
-                  <MapPin className="size-4 shrink-0 text-brand-400" aria-hidden="true" />
+                <p className="text-fg-muted flex items-center gap-2.5 text-sm">
+                  <MapPin className="text-brand-400 size-4 shrink-0" aria-hidden="true" />
                   {site.location}
                 </p>
               </div>
 
               <div className="card-surface mt-auto p-5">
-                <p className="text-sm leading-relaxed text-fg-muted">
-                  Ne istediğinizden emin değil misiniz? Sorun değil — ilk görüşmede ihtiyacınızı
-                  birlikte netleştirip size uygun seçenekleri anlatıyoruz.
+                <p className="text-fg-muted text-sm leading-relaxed">
+                  Çözümden emin değilseniz sorunu anlatmanız yeterli. Uygun seçenekleri ilk
+                  görüşmede birlikte netleştiririz.
                 </p>
               </div>
             </div>

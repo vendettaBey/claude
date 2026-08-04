@@ -9,13 +9,16 @@ import { cn } from '@/lib/cn'
 import type { Technology } from '@/types'
 import { TechMarkIcon } from './TechMark'
 
-function TechChip({ tech }: { tech: Technology }) {
+const MARQUEE_COPIES = 6
+
+function TechChip({ tech, duplicate = false }: { tech: Technology; duplicate?: boolean }) {
   return (
     <Tooltip content={tech.description}>
       <button
         type="button"
+        tabIndex={duplicate ? -1 : undefined}
         // Klavye ile de odaklanılabilir: açıklama yalnızca fareyle erişilebilir değil.
-        className="group/tech flex shrink-0 items-center gap-3 rounded-xl border border-white/8 bg-white/[0.025] px-4 py-3 transition-colors duration-300 hover:border-white/20 hover:bg-white/[0.05]"
+        className="tech-chip group/tech flex shrink-0 items-center gap-3 rounded-xl border border-white/8 bg-white/[0.025] px-4 py-3 transition-colors duration-300 hover:border-white/20 hover:bg-white/[0.05]"
       >
         <span
           className="transition-transform duration-300 group-hover/tech:scale-110"
@@ -23,7 +26,7 @@ function TechChip({ tech }: { tech: Technology }) {
         >
           <TechMarkIcon mark={tech.mark} className="size-6" />
         </span>
-        <span className="text-sm font-medium whitespace-nowrap text-fg-muted transition-colors group-hover/tech:text-fg">
+        <span className="text-fg-muted group-hover/tech:text-fg text-sm font-medium whitespace-nowrap transition-colors">
           {tech.name}
         </span>
       </button>
@@ -48,28 +51,28 @@ function MarqueeRow({
   })
 
   return (
-    <div ref={skewRef} className="mask-fade-x group overflow-hidden py-1.5 will-change-transform">
+    <div
+      ref={skewRef}
+      className="marquee-row mask-fade-x overflow-hidden py-1.5 will-change-transform"
+    >
       <div
         className={cn(
-          'flex w-max gap-4',
+          'marquee-track-interactive flex w-max gap-0',
           reverse ? 'animate-marquee-reverse' : 'animate-marquee',
-          // Üzerine gelince akış belirgin biçimde yavaşlar (durmaz).
-          'group-hover:[animation-duration:150s]',
         )}
         style={{ '--marquee-duration': duration } as CSSProperties}
       >
-        {[0, 1].map((copy) => (
+        {Array.from({ length: MARQUEE_COPIES }, (_, copy) => (
           <div
             key={copy}
-            className="flex shrink-0 gap-4"
-            // İkinci kopya yalnızca kesintisiz akış için var. `aria-hidden` tek
-            // başına yetmez: içindeki butonlar klavye odağı almaya devam eder.
-            // `inert` hem odağı hem erişilebilirlik ağacını kapatır.
-            aria-hidden={copy === 1 || undefined}
-            inert={copy === 1}
+            className="flex shrink-0 gap-4 pr-4"
+            // Yalnızca ilk dizi erişilebilirlik ağacında ve klavye sırasındadır.
+            // Diğerleri geniş ekranlarda bile kesintisiz doluluk sağlayan görsel
+            // kopyalardır; hover tooltip'i çalışır ama Tab sırasını çoğaltmazlar.
+            aria-hidden={copy > 0 || undefined}
           >
             {items.map((tech) => (
-              <TechChip key={`${copy}-${tech.name}`} tech={tech} />
+              <TechChip key={`${copy}-${tech.name}`} tech={tech} duplicate={copy > 0} />
             ))}
           </div>
         ))}
@@ -89,10 +92,10 @@ export function Technologies() {
           index="05"
           eyebrow="Teknolojiler"
           segments={[
-            { text: 'Güncel, güvenli ve' },
-            { text: 'sürdürülebilir teknolojiler', highlight: true },
+            { text: 'Doğru teknoloji,' },
+            { text: 'daha az teknik borç', highlight: true },
           ]}
-          description="Her proje için tek bir teknoloji kalıbı kullanmak yerine ihtiyaca en uygun araçları seçiyoruz. Hedefimiz yalnızca güncel görünen değil; hızlı, güvenli, sürdürülebilir ve geliştirilebilir sistemler kurmak."
+          description="Araçları popülerliğine göre değil; hız, güvenlik, bakım maliyeti ve büyüme planınıza göre seçiyoruz."
         />
       </div>
 
@@ -105,9 +108,9 @@ export function Technologies() {
                 <li key={tech.name} className="card-surface p-4">
                   <span className="flex items-center gap-3" style={{ color: tech.color }}>
                     <TechMarkIcon mark={tech.mark} className="size-6" />
-                    <span className="text-sm font-medium text-fg">{tech.name}</span>
+                    <span className="text-fg text-sm font-medium">{tech.name}</span>
                   </span>
-                  <p className="mt-2.5 text-xs leading-relaxed text-fg-dim">{tech.description}</p>
+                  <p className="text-fg-dim mt-2.5 text-xs leading-relaxed">{tech.description}</p>
                 </li>
               ))}
             </ul>
@@ -122,9 +125,8 @@ export function Technologies() {
 
       <div className="container-page mt-12">
         <Reveal>
-          <p className="mx-auto max-w-2xl text-center text-sm leading-relaxed text-fg-dim">
-            Teknoloji seçimini modaya göre değil, projenin gerçek ihtiyacına göre yapıyoruz.
-            Amacımız uzun vadede desteklenebilen, ekibinizin devralabileceği bir altyapı bırakmak.
+          <p className="text-fg-dim mx-auto max-w-2xl text-center text-sm leading-relaxed">
+            Sonuç: ekibinizin devralabileceği, yeni özelliklerle büyüyebilen bir altyapı.
           </p>
         </Reveal>
       </div>

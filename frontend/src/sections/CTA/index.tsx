@@ -54,23 +54,23 @@ export function CTA() {
             <AnimatedHeading
               id="cta-baslik"
               segments={[
-                { text: 'Aklınızdaki projeyi' },
-                { text: 'birlikte hayata geçirelim.', highlight: true },
+                { text: 'Sorununuzu anlatın,' },
+                { text: 'uygulanabilir çözümü çıkaralım.', highlight: true },
               ]}
               className="mx-auto max-w-3xl text-3xl leading-[1.12] font-semibold text-balance sm:text-4xl lg:text-[2.85rem]"
             />
 
             <Reveal delay={0.12}>
               <p className="text-fg-muted mx-auto mt-6 max-w-2xl text-base leading-relaxed sm:text-lg">
-                Yeni bir kurumsal web sitesine, işletmenize özel bir sisteme veya mevcut projenizi
-                geliştirecek teknik bir ekibe ihtiyacınız varsa projenizi konuşalım.
+                Web sitesi, müşteri portalı veya yönetim sistemi: ihtiyacı netleştirip doğru kapsamı
+                birlikte belirleyelim.
               </p>
             </Reveal>
 
             <Reveal3D delay={0.2} tilt={14} depth={70}>
               <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Button href="#iletisim" size="lg" className="w-full sm:w-auto">
-                  Projem İçin Teklif Al
+                  İhtiyacımı Anlatayım
                   <ArrowRight
                     className="size-4 transition-transform duration-300 group-hover/btn:translate-x-1"
                     aria-hidden="true"
@@ -90,8 +90,7 @@ export function CTA() {
 
             <Reveal delay={0.28}>
               <p className="text-fg-dim mx-auto mt-6 max-w-lg text-sm">
-                İlk görüşmede ihtiyacınızı değerlendiriyor ve uygulanabilir çözüm seçeneklerini
-                paylaşıyoruz.
+                İlk görüşmede uygulanabilir seçenekleri ve sonraki adımı netleştiriyoruz.
               </p>
             </Reveal>
           </div>

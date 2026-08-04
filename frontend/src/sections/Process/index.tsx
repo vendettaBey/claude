@@ -83,19 +83,13 @@ export function Process() {
           id="surec-baslik"
           index="04"
           eyebrow="Çalışma Süreci"
-          segments={[
-            { text: 'Ne zaman ne olacağını' },
-            { text: 'baştan bilirsiniz', highlight: true },
-          ]}
-          description="Yedi net adım, her birinde elinize geçen somut bir çıktı. Projenin hangi aşamada olduğunu tahmin etmenize gerek kalmaz."
+          segments={[{ text: 'Her adım görünür,' }, { text: 'her çıktı somut', highlight: true }]}
+          description="İhtiyaç analizinden yayına kadar ne yaptığımızı ve her aşamada elinize ne geçeceğini bilirsiniz."
         />
 
         <div ref={containerRef} className="relative mx-auto mt-16 max-w-2xl lg:mt-20">
           {/* Dikey ray — tüm ekran genişliklerinde solda, tek sütunlu akış */}
-          <div
-            aria-hidden="true"
-            className="absolute top-2 bottom-2 left-5 w-px bg-white/8"
-          >
+          <div aria-hidden="true" className="absolute top-2 bottom-2 left-5 w-px bg-white/8">
             <span
               ref={lineRef}
               className={cn(
@@ -111,7 +105,7 @@ export function Process() {
             {!reduced && (
               <span
                 ref={headRef}
-                className="absolute left-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-glow opacity-0 shadow-[0_0_14px_4px_rgba(34,211,238,0.55)]"
+                className="bg-cyan-glow absolute left-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 shadow-[0_0_14px_4px_rgba(34,211,238,0.55)]"
               />
             )}
           </div>
@@ -128,8 +122,8 @@ export function Process() {
                     className={cn(
                       'absolute top-1 left-5 z-10 grid size-9 -translate-x-1/2 place-items-center rounded-full border transition-all duration-500',
                       isActive
-                        ? 'scale-110 border-brand-500/60 bg-ink-950 shadow-[0_0_0_5px_rgba(61,155,255,0.10),0_0_22px_rgba(61,155,255,0.35)]'
-                        : 'scale-100 border-white/12 bg-ink-900',
+                        ? 'border-brand-500/60 bg-ink-950 scale-110 shadow-[0_0_0_5px_rgba(61,155,255,0.10),0_0_22px_rgba(61,155,255,0.35)]'
+                        : 'bg-ink-900 scale-100 border-white/12',
                     )}
                   >
                     <step.icon
@@ -156,17 +150,17 @@ export function Process() {
                         >
                           {String(index + 1).padStart(2, '0')}
                         </span>
-                        <h3 className="font-display text-base font-semibold text-fg sm:text-lg">
+                        <h3 className="font-display text-fg text-base font-semibold sm:text-lg">
                           {step.title}
                         </h3>
                       </div>
-                      <p className="mt-3 text-sm leading-relaxed text-fg-muted">
+                      <p className="text-fg-muted mt-3 text-sm leading-relaxed">
                         {step.description}
                       </p>
                       {/* "Çıktı" değil "Elinizde olan": aynı bilgi, ama işletme
                           sahibinin bakış açısından — biz ne yaptığımız değil,
                           onun eline ne geçtiği. */}
-                      <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/8 px-3 py-1.5 text-xs text-emerald-300">
+                      <p className="process-output mt-4 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium">
                         <CheckCircle2 className="size-3.5 shrink-0" aria-hidden="true" />
                         Elinizde olan: {step.output}
                       </p>

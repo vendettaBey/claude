@@ -41,20 +41,24 @@ export function Hero() {
       <div className="studio-hero-layout">
         <div className="studio-hero-copy">
           <span className="studio-eyebrow">
-            <i /> WEB TASARIM / ÖZEL YAZILIM
+            <i /> WEB SİTESİ / İŞLETME YAZILIMI
           </span>
 
-          <h1 id="hero-baslik" aria-label="Markanızı dijitalde büyüten deneyimler üretiyoruz.">
+          <h1
+            id="hero-baslik"
+            aria-label="Web sitesi değil, işinizi hızlandıran dijital sistemler kuruyoruz."
+          >
             <span className="studio-heading" aria-hidden="true">
-              <span>Markanızı</span>
-              <span>dijitalde büyüten</span>
-              <span>deneyimler üretiyoruz.</span>
+              <span>Web sitesi değil,</span>
+              <span>işinizi hızlandıran</span>
+              <span>dijital sistemler.</span>
             </span>
           </h1>
 
           <p>
-            Markanızı güçlü biçimde anlatan web siteleri ve iş süreçlerinizi kolaylaştıran özel
-            yazılımlar tasarlıyor, geliştiriyor ve yayına alıyoruz.
+            Kurumsal web siteleri, müşteri portalları ve işletmenize özel yönetim yazılımları
+            geliştiriyoruz. Ekibiniz daha az manuel iş yapıyor, müşteriniz aradığına daha hızlı
+            ulaşıyor.
           </p>
 
           <div className="studio-hero-actions">
@@ -65,7 +69,7 @@ export function Hero() {
                 if (scrollToSection('#iletisim')) event.preventDefault()
               }}
             >
-              Birlikte üretelim <ArrowDownRight aria-hidden="true" />
+              İhtiyacımı anlatayım <ArrowDownRight aria-hidden="true" />
             </a>
             <a
               className="studio-button studio-button-ghost"
@@ -74,24 +78,24 @@ export function Hero() {
                 if (scrollToSection('#hizmetler')) event.preventDefault()
               }}
             >
-              Neler yapıyoruz? <ArrowRight aria-hidden="true" />
+              Çözümleri incele <ArrowRight aria-hidden="true" />
             </a>
           </div>
 
           <div className="studio-trust-note">
             <span />
-            <p>Tek ekipte strateji, arayüz, yazılım ve yayın sonrası gelişim.</p>
+            <p>Tek ekip, tek plan: tasarım, yazılım ve yayın sonrası destek.</p>
           </div>
 
           <div className="studio-credentials" aria-label="Çalışma yaklaşımımız">
             <span>
-              <b>01</b> Strateji
+              <b>01</b> İhtiyaç
             </span>
             <span>
               <b>02</b> Tasarım
             </span>
             <span>
-              <b>03</b> Yazılım
+              <b>03</b> Sistem
             </span>
           </div>
         </div>
@@ -108,7 +112,7 @@ export function Hero() {
           if (scrollToSection('#hizmetler')) event.preventDefault()
         }}
       >
-        <span>DENEYİMİ KEŞFET</span>
+        <span>ÇÖZÜMLERİ İNCELE</span>
         <i />
       </a>
     </section>

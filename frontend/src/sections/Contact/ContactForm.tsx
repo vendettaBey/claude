@@ -130,11 +130,11 @@ export function ContactForm() {
   const progress = step === 0 ? 33 : step === 1 ? 66 : 100
 
   return (
-    <div className="card-surface relative overflow-hidden p-6 sm:p-8">
+    <div className="premium-form-panel card-surface relative overflow-hidden p-6 sm:p-8">
       {/* İlerleme göstergesi */}
       <div aria-hidden={step === 2}>
         <div className="flex items-center justify-between text-xs">
-          <span className="font-medium text-fg">
+          <span className="text-fg font-medium">
             {step === 2 ? 'Teşekkürler' : `Adım ${step + 1} / 2`}
           </span>
           <span className="text-fg-dim">{STEP_LABELS[step]}</span>
@@ -160,7 +160,13 @@ export function ContactForm() {
             görmez, botlar ise doldurmaya devam eder. */}
         <div aria-hidden="true" inert className="absolute h-0 w-0 overflow-hidden opacity-0">
           <label htmlFor="website">Bu alanı boş bırakın</label>
-          <input id="website" type="text" tabIndex={-1} autoComplete="off" {...register('website')} />
+          <input
+            id="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            {...register('website')}
+          />
         </div>
 
         <AnimatePresence mode="wait" initial={false}>
@@ -198,7 +204,7 @@ export function ContactForm() {
               </Field>
 
               <div className="mt-2 flex justify-end">
-                <span className="text-[0.7rem] text-fg-dim tabular-nums">
+                <span className="text-fg-dim text-[0.7rem] tabular-nums">
                   {description.trim().length} / 5000
                 </span>
               </div>
@@ -304,9 +310,7 @@ export function ContactForm() {
                       options={serviceOptions}
                       placeholder="Bir hizmet seçin"
                       invalid={Boolean(errors.service_type)}
-                      describedBy={
-                        errors.service_type ? 'service_type-error' : 'service_type-hint'
-                      }
+                      describedBy={errors.service_type ? 'service_type-error' : 'service_type-hint'}
                     />
                   )}
                 />
@@ -408,7 +412,7 @@ export function ContactForm() {
                 </Button>
               </div>
 
-              <p className="text-xs leading-relaxed text-fg-dim">
+              <p className="text-fg-dim text-xs leading-relaxed">
                 Formu göndererek iletişim bilgilerinizin yalnızca talebinizi değerlendirmek amacıyla
                 işlenmesini kabul etmiş olursunuz. Ayrıntılar için{' '}
                 <a
@@ -442,12 +446,12 @@ export function ContactForm() {
                 <CheckCircle2 className="size-8" aria-hidden="true" />
               </motion.span>
 
-              <h3 className="mt-6 font-display text-xl font-semibold text-fg">
+              <h3 className="font-display text-fg mt-6 text-xl font-semibold">
                 Mesajınız bize ulaştı.
               </h3>
-              <p className="mt-3 max-w-sm text-sm leading-relaxed text-fg-muted">
-                Projenizi inceleyip sizinle iletişime geçeceğiz. Genellikle bir iş günü içinde
-                dönüş yapıyoruz.
+              <p className="text-fg-muted mt-3 max-w-sm text-sm leading-relaxed">
+                Projenizi inceleyip sizinle iletişime geçeceğiz. Genellikle bir iş günü içinde dönüş
+                yapıyoruz.
               </p>
 
               <Button

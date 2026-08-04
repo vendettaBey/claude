@@ -44,11 +44,8 @@ export function Services() {
           id="hizmetler-baslik"
           index="01"
           eyebrow="Hizmetler"
-          segments={[
-            { text: 'Dijitalde görünür olun,' },
-            { text: 'işinizi hızlandırın', highlight: true },
-          ]}
-          description="İhtiyacınızı onlarca seçenek arasında kaybetmeden üç net sonuç etrafında çözüyoruz. Doğru kapsamı ilk görüşmede birlikte belirliyoruz."
+          segments={[{ text: 'İhtiyacınıza göre' }, { text: 'üç net çözüm', highlight: true }]}
+          description="Güven veren bir web sitesi, iş akışını hızlandıran bir uygulama veya operasyonu tek yerde toplayan yönetim sistemi."
         />
 
         <div className="mt-10 grid gap-4 lg:mt-12 lg:grid-cols-3">
@@ -59,11 +56,11 @@ export function Services() {
                 <SpotlightCard
                   as="article"
                   accent={service.accent}
-                  className="flex h-full flex-col p-6 sm:p-7"
+                  className="premium-glass-card flex h-full flex-col p-6 sm:p-7"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <span
-                      className="grid size-11 shrink-0 place-items-center rounded-xl border border-white/10"
+                      className="feature-icon-surface grid size-11 shrink-0 place-items-center rounded-xl border border-white/10"
                       style={{
                         color: service.accent,
                         background: `linear-gradient(140deg, ${service.accent}24, transparent 72%)`,
@@ -74,10 +71,7 @@ export function Services() {
                     <span className="annotation text-fg-dim text-[0.6rem]">0{index + 1}</span>
                   </div>
 
-                  <p
-                    className="mt-5 text-xs font-semibold tracking-[0.08em] uppercase"
-                    style={{ color: service.accent }}
-                  >
+                  <p className="text-brand-400 mt-5 text-xs font-semibold tracking-[0.08em] uppercase">
                     {servicePromises[service.id as (typeof featuredServiceIds)[number]]}
                   </p>
                   <h3 className="font-display text-fg mt-2 text-xl leading-tight font-semibold">
@@ -106,8 +100,7 @@ export function Services() {
                       event.preventDefault()
                       selectService(service)
                     }}
-                    className="group/link mt-6 inline-flex min-h-11 items-center gap-2 self-start text-sm font-medium"
-                    style={{ color: service.accent }}
+                    className="group/link text-brand-400 mt-6 inline-flex min-h-11 items-center gap-2 self-start text-sm font-medium"
                   >
                     Projeyi konuşalım
                     <ArrowRight
@@ -145,7 +138,7 @@ export function Services() {
                         event.preventDefault()
                         selectService(service)
                       }}
-                      className="group/chip text-fg-muted hover:text-fg inline-flex min-h-10 items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-3.5 text-xs font-medium transition-colors hover:border-white/20 hover:bg-white/[0.07]"
+                      className="support-chip group/chip text-fg-muted hover:text-fg inline-flex min-h-10 items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-3.5 text-xs font-medium transition-colors hover:border-white/20 hover:bg-white/[0.07]"
                     >
                       <Icon
                         className="size-3.5"
