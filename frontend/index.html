@@ -3,8 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#05060A" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#02040A" />
+    <meta name="color-scheme" content="light dark" />
+    <script>
+      ;(() => {
+        try {
+          const saved = localStorage.getItem('uy:theme')
+          const theme =
+            saved === 'light' || saved === 'dark'
+              ? saved
+              : matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark'
+          document.documentElement.dataset.theme = theme
+          document.documentElement.style.colorScheme = theme
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute('content', theme === 'light' ? '#f4f6fa' : '#02040A')
+        } catch {
+          document.documentElement.dataset.theme = 'dark'
+        }
+      })()
+    </script>
 
     <title>Ülkü Yazılım | Kurumsal Web Sitesi ve Web Uygulaması Geliştirme</title>
     <meta
@@ -118,7 +138,14 @@
   <body>
     <div id="root"></div>
     <noscript>
-      <div style="padding: 40px; font-family: system-ui, sans-serif; color: #e7ecf3; background: #05060a">
+      <div
+        style="
+          padding: 40px;
+          font-family: system-ui, sans-serif;
+          color: #e7ecf3;
+          background: #02040a;
+        "
+      >
         <h1>Ülkü Yazılım</h1>
         <p>
           İşletmelere özel kurumsal web siteleri, web uygulamaları ve dijital çözümler

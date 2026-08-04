@@ -134,8 +134,21 @@ created_at, updated_at
 `status` değerleri `App\Enums\QuoteRequestStatus` içinde tanımlıdır:
 `new · contacted · evaluating · converted · rejected`
 
-Model ve enum'lar, ileride bir yönetim paneli (Filament veya özel panel)
-eklenebilecek şekilde hazırlanmıştır. İlk sürümde panel yoktur.
+Form kayıtları, oturum korumalı özel yönetim panelinden görüntülenebilir:
+
+```text
+https://alan-adiniz.com/yonetim
+```
+
+İlk yönetici hesabını oluşturmak için migration sonrasında şu komutu çalıştırın:
+
+```bash
+docker compose exec app php artisan admin:create
+```
+
+Komut yönetici adını, e-posta adresini ve en az 12 karakterli şifreyi güvenli
+biçimde sorar. Panelde talepler aranabilir, duruma göre filtrelenebilir ve
+`new · contacted · evaluating · converted · rejected` adımları arasında güncellenebilir.
 
 ---
 

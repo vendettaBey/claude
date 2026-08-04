@@ -9,7 +9,6 @@ import { Hero } from '@/sections/Hero'
 import { Trust } from '@/sections/Trust'
 import { Services } from '@/sections/Services'
 import { WhyUs } from '@/sections/WhyUs'
-import { Solutions } from '@/sections/Solutions'
 import { Proof } from '@/sections/Proof'
 import { Process } from '@/sections/Process'
 import { Technologies } from '@/sections/Technologies'
@@ -64,8 +63,6 @@ export default function HomePage() {
       <Trust />
       <Services />
       <WhyUs />
-      <Solutions />
-      {/* Gerçek referans/yorum eklenene kadar kendini render etmez. */}
       <Proof />
       <Process />
       <Technologies />

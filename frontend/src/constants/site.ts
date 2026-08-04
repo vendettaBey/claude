@@ -55,7 +55,7 @@ export const telUrl = `tel:${site.phoneHref}`
 export const navItems: NavItem[] = [
   { label: 'Ana Sayfa', href: '#ana-sayfa' },
   { label: 'Hizmetler', href: '#hizmetler' },
-  { label: 'Projeler', href: '#projeler' },
+  { label: 'Referans', href: '#referanslar' },
   { label: 'Süreç', href: '#surec' },
   { label: 'Teknolojiler', href: '#teknolojiler' },
   { label: 'İletişim', href: '#iletisim' },
@@ -66,7 +66,7 @@ export const sectionIds = [
   'ana-sayfa',
   'hizmetler',
   'neden-biz',
-  'projeler',
+  'referanslar',
   'surec',
   'teknolojiler',
   'sektorler',

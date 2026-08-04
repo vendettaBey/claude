@@ -8,12 +8,12 @@ import { MobileCta } from '@/components/layout/MobileCta'
 import { SkipLink } from '@/components/common/SkipLink'
 import { Preloader } from '@/components/motion/Preloader'
 import { ScrollProgress } from '@/components/motion/ScrollProgress'
-import { CustomCursor } from '@/components/motion/CustomCursor'
 import { SmoothScroll } from '@/components/motion/SmoothScroll'
 import { ScrollSignal } from '@/components/motion/ScrollSignal'
 import { SceneBackdrop } from '@/components/three/SceneBackdrop'
 import { useActiveSection } from '@/hooks/useActiveSection'
 import { useMotionProfile } from '@/hooks/useMotionProfile'
+import { useTheme } from '@/hooks/useTheme'
 import { sectionIds } from '@/constants/site'
 import { ScrollTrigger } from '@/hooks/useGsap'
 import { routes } from '@/routes'
@@ -37,6 +37,7 @@ export default function App() {
   const isHome = pathname === '/'
   const activeSection = useActiveSection(sectionIds, isHome)
   const { reduced } = useMotionProfile()
+  const { theme, toggleTheme } = useTheme()
 
   return (
     <TooltipProvider delayDuration={120} skipDelayDuration={300}>
@@ -47,14 +48,13 @@ export default function App() {
       <ScrollSignal />
       <ScrollToTop />
       <ScrollProgress />
-      <CustomCursor />
       <SkipLink />
 
       {/* Sayfanın tamamının arkasında duran, kaydırmayla sürülen 3B katman.
           `z-0`; içerik katmanları `z-10` taşıdığı için her zaman altta kalır. */}
-      <SceneBackdrop />
+      <SceneBackdrop theme={theme} />
 
-      <Header activeSection={activeSection} />
+      <Header activeSection={activeSection} theme={theme} onToggleTheme={toggleTheme} />
 
       <main id="ana-icerik" className="relative z-10">
         {/* Sayfalar arası yumuşak geçiş */}

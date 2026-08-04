@@ -9,12 +9,16 @@ import { cn } from '@/lib/cn'
 import { Logo } from './Logo'
 import { MobileMenu } from './MobileMenu'
 import { Button } from '@/components/ui/Button'
+import type { Theme } from '@/hooks/useTheme'
+import { ThemeToggle } from './ThemeToggle'
 
 type HeaderProps = {
   activeSection: string | null
+  theme: Theme
+  onToggleTheme: () => void
 }
 
-export function Header({ activeSection }: HeaderProps) {
+export function Header({ activeSection, theme, onToggleTheme }: HeaderProps) {
   const scrolled = useScrolled(24)
   const [menuOpen, setMenuOpen] = useState(false)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
@@ -43,7 +47,7 @@ export function Header({ activeSection }: HeaderProps) {
         className={cn(
           'fixed inset-x-0 top-0 z-50 transition-all duration-300',
           scrolled
-            ? 'border-b border-white/8 bg-ink-950/72 shadow-[0_8px_32px_-16px_rgba(0,0,0,0.9)] backdrop-blur-xl'
+            ? 'bg-ink-950/72 border-b border-white/8 shadow-[0_8px_32px_-16px_rgba(0,0,0,0.9)] backdrop-blur-xl'
             : 'border-b border-transparent bg-transparent',
         )}
       >
@@ -101,6 +105,8 @@ export function Header({ activeSection }: HeaderProps) {
           </nav>
 
           <div className="flex items-center gap-2">
+            <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+
             {/* Header CTA yalnızca menünün de göründüğü geniş ekranlarda durur.
                 Küçük ekranda logo + hamburger + CTA aynı satırda yarışıyordu;
                 mobilde çağrıyı alttaki sabit çubuk üstleniyor.
@@ -122,7 +128,7 @@ export function Header({ activeSection }: HeaderProps) {
               aria-label="Menüyü aç"
               aria-expanded={menuOpen}
               aria-controls="mobil-menu"
-              className="grid size-11 place-items-center rounded-full border border-white/10 bg-white/[0.04] text-fg transition-colors hover:bg-white/[0.09] lg:hidden"
+              className="text-fg grid size-11 place-items-center rounded-full border border-white/10 bg-white/[0.04] transition-colors hover:bg-white/[0.09] lg:hidden"
             >
               <Menu className="size-5" aria-hidden="true" />
             </button>

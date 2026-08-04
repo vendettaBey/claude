@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react'
 import { useMotionProfile } from '@/hooks/useMotionProfile'
 import { usePageVisibility } from '@/hooks/usePageVisibility'
+import type { Theme } from '@/hooks/useTheme'
 
 // Three.js ve sahne ayrı bir chunk'ta; yalnızca gerçekten kullanılacaksa indirilir.
 const SiteScene = lazy(() => import('./SiteScene'))
@@ -24,7 +25,7 @@ const SiteScene = lazy(() => import('./SiteScene'))
  * bu bileşen hiçbir şey render etmez; bölümlerin kendi `AmbientBackground`
  * katmanı zaten görsel derinliği tek başına taşır.
  */
-export function SceneBackdrop() {
+export function SceneBackdrop({ theme }: { theme: Theme }) {
   const { allow3d } = useMotionProfile()
   const visible = usePageVisibility()
 
@@ -39,13 +40,13 @@ export function SceneBackdrop() {
       style={{ contain: 'strict' }}
     >
       <Suspense fallback={null}>
-        <SiteScene active={visible} />
+        <SiteScene key={theme} active={visible} theme={theme} />
       </Suspense>
 
       {/* Metin bandı perdesi — sahne kenarlarda canlı, ortada sakin kalır. */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent,rgba(5,6,10,0.72)_28%,rgba(5,6,10,0.72)_72%,transparent)]" />
+      <div className="scene-text-veil absolute inset-0" />
       {/* Vinyet — üst ve alt kenarı zemine bağlar. */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_65%_at_50%_50%,transparent_35%,rgba(5,6,10,0.85)_100%)]" />
+      <div className="scene-vignette absolute inset-0" />
     </div>
   )
 }

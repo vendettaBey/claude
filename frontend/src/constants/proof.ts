@@ -45,3 +45,23 @@ export const testimonials: Testimonial[] = []
 
 export const hasCaseStudies = caseStudies.length > 0
 export const hasTestimonials = testimonials.length > 0
+
+/** Ana sayfada öne çıkarılan, yayında olduğu doğrulanmış proje. */
+export const featuredReference = {
+  title: 'Hatice & Ömer',
+  url: 'https://haticeveomer.com',
+  image: '/projects/hatice-ve-omer.png',
+  imageAlt: 'Hatice ve Ömer dijital düğün davetiyesi ana sayfası',
+  year: '2026',
+  location: 'Kayseri',
+  type: 'Dijital davet · Web uygulaması',
+  description:
+    'Misafirlerin daveti keşfettiği, katılım durumunu bildirdiği ve düğün gününe dair tüm ayrıntılara tek yerden ulaştığı kişiselleştirilmiş bir dijital deneyim.',
+  features: [
+    'RSVP ve misafir planlama',
+    'Geri sayım ve etkinlik programı',
+    'Harita ve takvim entegrasyonu',
+    'Anı ve fotoğraf paylaşımı',
+  ],
+  tags: ['Özel tasarım', 'Responsive', 'Form akışları', 'Konum'],
+} as const

@@ -63,7 +63,7 @@ export function MobileCta() {
                 event.preventDefault()
                 scrollToSection('#iletisim')
               }}
-              className="flex h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-[linear-gradient(100deg,#2563eb,#3d9bff,#22d3ee)] text-sm font-medium text-white"
+              className="flex h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-[linear-gradient(100deg,#2563eb,#3d9bff,#22d3ee)] text-sm font-medium text-[#fff]"
             >
               <Send className="size-4" aria-hidden="true" />
               Teklif Al

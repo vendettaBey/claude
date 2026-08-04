@@ -2,6 +2,7 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import { scrollState } from '@/lib/scrollState'
+import type { Theme } from '@/hooks/useTheme'
 
 /**
  * Sayfanın tamamının arkasında yaşayan tek WebGL sahnesi.
@@ -198,7 +199,12 @@ function ParticleField() {
   })
 
   return (
-    <points geometry={geometry} frustumCulled={false} rotation={[-0.32, 0, 0]} position={[0, -7, 0]}>
+    <points
+      geometry={geometry}
+      frustumCulled={false}
+      rotation={[-0.32, 0, 0]}
+      position={[0, -7, 0]}
+    >
       <shaderMaterial
         ref={materialRef}
         uniforms={uniforms}
@@ -317,9 +323,10 @@ function CameraRig() {
 type SiteSceneProps = {
   /** Sekme görünmüyorsa render döngüsü tamamen durur. */
   active: boolean
+  theme: Theme
 }
 
-export default function SiteScene({ active }: SiteSceneProps) {
+export default function SiteScene({ active, theme }: SiteSceneProps) {
   return (
     <Canvas
       aria-hidden="true"
@@ -328,16 +335,28 @@ export default function SiteScene({ active }: SiteSceneProps) {
       style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
       frameloop={active ? 'always' : 'never'}
       camera={{ position: [0, 1.5, 20], fov: 46, near: 0.1, far: 160 }}
-      gl={{ antialias: false, alpha: true, powerPreference: 'low-power' }}
-      // Retina'da 2x üstüne çıkmıyoruz; parçacık alanı fill-rate'e duyarlı.
-      dpr={[1, 1.6]}
+      gl={{
+        antialias: true,
+        alpha: true,
+        depth: true,
+        stencil: false,
+        powerPreference: 'high-performance',
+      }}
+      // Yüksek yoğunluklu ekranlarda tel kafesleri ve parçacıkları fiziksel pikselde
+      // çizer; 2x sınırı, yüksek tazeleme hızını korurken Retina keskinliği verir.
+      dpr={[1, 2]}
+      onCreated={({ gl }) => {
+        gl.outputColorSpace = THREE.SRGBColorSpace
+        gl.toneMapping = THREE.ACESFilmicToneMapping
+        gl.toneMappingExposure = theme === 'light' ? 1.02 : 1.12
+      }}
     >
       <CameraRig />
       <ParticleField />
       <WireFrames />
       {/* Uzaklaşan her şeyi zemine bağlayan sis — sahnenin kenarları
           kesilmek yerine karanlığa karışır. */}
-      <fog attach="fog" args={['#05060a', 34, 105]} />
+      <fog attach="fog" args={[theme === 'light' ? '#f4f6fa' : '#02040a', 34, 105]} />
     </Canvas>
   )
 }

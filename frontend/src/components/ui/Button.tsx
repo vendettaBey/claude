@@ -19,13 +19,13 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary:
-    'text-white shadow-[0_10px_36px_-12px_rgba(61,155,255,0.85)] ' +
+    'text-[#fff] shadow-[0_10px_36px_-12px_rgba(61,155,255,0.85)] ' +
     'bg-[linear-gradient(100deg,#2563eb_0%,#3d9bff_45%,#22d3ee_100%)] ' +
     'hover:shadow-[0_16px_48px_-12px_rgba(61,155,255,0.95)]',
   secondary:
     'border border-white/12 bg-white/[0.04] text-fg hover:border-white/25 hover:bg-white/[0.08]',
   outline:
-    'border border-brand-500/40 bg-transparent text-brand-400 hover:border-brand-400 hover:bg-brand-500/10 hover:text-white',
+    'border border-brand-500/40 bg-transparent text-brand-400 hover:border-brand-400 hover:bg-brand-500/10 hover:text-[#fff]',
   ghost: 'text-fg-muted hover:text-fg',
 }
 
@@ -126,7 +126,7 @@ export function Button({
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 overflow-hidden rounded-full"
         >
-          <span className="absolute inset-y-0 -left-full w-1/2 skew-x-[-20deg] bg-white/25 blur-md transition-transform duration-700 ease-out group-hover/btn:translate-x-[400%] motion-reduce:hidden" />
+          <span className="absolute inset-y-0 -left-full w-1/2 skew-x-[-20deg] bg-[#fff]/25 blur-md transition-transform duration-700 ease-out group-hover/btn:translate-x-[400%] motion-reduce:hidden" />
         </span>
       )}
       <motion.span

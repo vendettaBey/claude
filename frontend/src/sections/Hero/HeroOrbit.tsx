@@ -29,15 +29,6 @@ export function HeroOrbit() {
             <i className="electron electron-small" />
           </div>
         </div>
-        <div className="orbit-plane plane-four">
-          <div className="orbit-ring ring-four">
-            <i className="electron electron-hot" />
-            <i className="electron electron-small" />
-            <i className="electron" />
-            <i className="electron electron-dim" />
-          </div>
-        </div>
-
         <div className="kinetic-cube">
           <span className="cube-face face-front">
             <b>STRATEJİ</b>

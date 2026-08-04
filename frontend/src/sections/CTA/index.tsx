@@ -21,10 +21,7 @@ export function CTA() {
           className="overflow-hidden rounded-3xl border border-white/10"
         >
           {/* Animasyonlu gradient zemin */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 -z-20 bg-[linear-gradient(125deg,#0b1226_0%,#0a0f1c_45%,#0d1020_100%)]"
-          />
+          <div aria-hidden="true" className="theme-cta-surface absolute inset-0 -z-20" />
           {/* Işık küresi kaydırmayla metinden bağımsız hareket eder.
               Parallax sarmalayıcı ayrı bir katman olarak duruyor: `y` dönüşümü
               doğrudan küreye verilseydi kürenin `-translate-x-1/2` yatay
@@ -50,7 +47,7 @@ export function CTA() {
             speed={-0.16}
             className="pointer-events-none absolute inset-0 -z-20"
           >
-            <div className="bg-grid absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_60%_70%_at_50%_50%,#000,transparent_75%)]" />
+            <div className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_60%_70%_at_50%_50%,#000,transparent_75%)] opacity-60" />
           </Parallax>
 
           <div className="relative px-6 py-16 text-center sm:px-10 sm:py-20 lg:px-16">
@@ -64,7 +61,7 @@ export function CTA() {
             />
 
             <Reveal delay={0.12}>
-              <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-fg-muted sm:text-lg">
+              <p className="text-fg-muted mx-auto mt-6 max-w-2xl text-base leading-relaxed sm:text-lg">
                 Yeni bir kurumsal web sitesine, işletmenize özel bir sisteme veya mevcut projenizi
                 geliştirecek teknik bir ekibe ihtiyacınız varsa projenizi konuşalım.
               </p>
@@ -79,7 +76,12 @@ export function CTA() {
                     aria-hidden="true"
                   />
                 </Button>
-                <Button href={whatsappUrl} variant="secondary" size="lg" className="w-full sm:w-auto">
+                <Button
+                  href={whatsappUrl}
+                  variant="secondary"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                >
                   <MessageCircle className="size-4 text-emerald-400" aria-hidden="true" />
                   WhatsApp'tan Yaz
                 </Button>
@@ -87,7 +89,7 @@ export function CTA() {
             </Reveal3D>
 
             <Reveal delay={0.28}>
-              <p className="mx-auto mt-6 max-w-lg text-sm text-fg-dim">
+              <p className="text-fg-dim mx-auto mt-6 max-w-lg text-sm">
                 İlk görüşmede ihtiyacınızı değerlendiriyor ve uygulanabilir çözüm seçeneklerini
                 paylaşıyoruz.
               </p>
