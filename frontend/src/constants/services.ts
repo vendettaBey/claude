@@ -1,5 +1,6 @@
 ﻿import {
   AppWindow,
+  Blocks,
   Building2,
   LayoutDashboard,
   LayoutTemplate,
@@ -145,6 +146,27 @@ export const services: Service[] = [
     accent: '#fb7185',
     formValue: 'api-entegrasyon',
     span: 'normal',
+  },
+  {
+    id: 'erp-isletme-yonetimi',
+    title: 'İşletme Yönetim Yazılımı (ERP/CRM)',
+    description:
+      'CRM, stok, teklif, satış, muhasebe, İK, üretim ve maliyetlendirme gibi ihtiyaçlarınızı hazır paket paylarıyla değil, işletmenize özel modüllerle tek çatı altında topluyoruz.',
+    features: [
+      'CRM ve satış fırsatı takibi',
+      'Ürün / stok ve çoklu depo yönetimi',
+      'Teklif, sipariş ve fatura süreçleri',
+      'Muhasebe ve nakit akışı takibi',
+      'İK, personel ve izin yönetimi',
+      'Üretim, reçete (BOM) ve maliyetlendirme',
+      'Ekipman / kaynak kiralama takibi',
+      'Şirket içi kullanım için özel geliştirildiği için abonelik limiti yok',
+    ],
+    cta: 'İşletme Yazılımınızı Konuşalım',
+    icon: Blocks,
+    accent: '#60a5fa',
+    formValue: 'erp-isletme-yonetimi',
+    span: 'wide',
   },
   {
     id: 'seo-danismanligi',

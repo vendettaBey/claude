@@ -38,6 +38,7 @@ export const quoteRequestSchema = z.object({
       'site-yenileme',
       'yonetim-paneli',
       'api-entegrasyon',
+      'erp-isletme-yonetimi',
       'bakim-destek',
       'seo-danismanligi',
       'kurumsal-kimlik',

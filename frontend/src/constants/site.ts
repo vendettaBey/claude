@@ -78,6 +78,7 @@ export const footerServiceLinks: NavItem[] = [
   { label: 'Kurumsal Web Sitesi', href: '#hizmetler' },
   { label: 'Özel Web Sitesi', href: '#hizmetler' },
   { label: 'Web Uygulaması', href: '#hizmetler' },
+  { label: 'İşletme Yönetim Yazılımı (ERP/CRM)', href: '#hizmetler' },
   { label: 'Site Yenileme', href: '#hizmetler' },
   { label: 'Teknik Destek', href: '#hizmetler' },
 ]

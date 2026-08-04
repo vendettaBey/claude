@@ -32,6 +32,11 @@ export const serviceOptions: SelectOption[] = [
     hint: 'Entegrasyonlarda bağlanacak servislerin dokümantasyonunu ve veri akışını birlikte gözden geçiriyoruz.',
   },
   {
+    value: 'erp-isletme-yonetimi',
+    label: 'İşletme yönetim yazılımı (ERP/CRM)',
+    hint: 'CRM, stok, muhasebe, İK, üretim gibi hangi modüllere ihtiyacınız olduğunu birlikte netleştiriyoruz.',
+  },
+  {
     value: 'bakim-destek',
     label: 'Bakım ve teknik destek',
     hint: 'Bakım hizmetinde mevcut projenin teknik durumunu inceleyip kapsamı netleştiriyoruz.',

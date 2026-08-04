@@ -32,6 +32,7 @@ export type ProjectVisualKind =
   | 'multibranch'
   | 'membership'
   | 'ecommerce'
+  | 'erp'
 
 export type ProjectScenario = {
   id: string
@@ -108,6 +109,7 @@ export type ServiceType =
   | 'site-yenileme'
   | 'yonetim-paneli'
   | 'api-entegrasyon'
+  | 'erp-isletme-yonetimi'
   | 'bakim-destek'
   | 'seo-danismanligi'
   | 'kurumsal-kimlik'

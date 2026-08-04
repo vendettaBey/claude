@@ -16,6 +16,7 @@ enum ServiceType: string
     case Redesign = 'site-yenileme';
     case AdminPanel = 'yonetim-paneli';
     case ApiIntegration = 'api-entegrasyon';
+    case ErpBusinessManagement = 'erp-isletme-yonetimi';
     case Maintenance = 'bakim-destek';
     case SeoConsulting = 'seo-danismanligi';
     case BrandIdentity = 'kurumsal-kimlik';
@@ -31,6 +32,7 @@ enum ServiceType: string
             self::Redesign => 'Mevcut siteyi yenileme',
             self::AdminPanel => 'Yönetim paneli',
             self::ApiIntegration => 'API ve entegrasyon',
+            self::ErpBusinessManagement => 'İşletme yönetim yazılımı (ERP/CRM)',
             self::Maintenance => 'Bakım ve teknik destek',
             self::SeoConsulting => 'SEO danışmanlığı',
             self::BrandIdentity => 'Kurumsal kimlik ve logo tasarımı',

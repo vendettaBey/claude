@@ -271,6 +271,46 @@ function MembershipMock() {
   )
 }
 
+function ErpMock() {
+  const modules = [
+    { name: 'CRM', value: 76 },
+    { name: 'Stok', value: 54 },
+    { name: 'Muhasebe', value: 62 },
+    { name: 'İK', value: 38 },
+  ]
+  return (
+    <div className="space-y-2.5 p-4">
+      <div className="flex items-center justify-between">
+        <Bar w="32%" tone="accent" />
+        <span className="font-sans text-[0.45rem] text-fg-dim">Genel bakış</span>
+      </div>
+      <div className="grid grid-cols-2 gap-1.5">
+        {modules.map((module) => (
+          <div key={module.name} className="space-y-1 rounded-md border border-white/8 bg-white/[0.02] p-1.5">
+            <span className="block font-sans text-[0.48rem] text-fg-dim">{module.name}</span>
+            <span className="block h-1.5 overflow-hidden rounded-full bg-white/8">
+              <span
+                className="block h-full rounded-full bg-current opacity-75"
+                style={{ width: `${module.value}%` }}
+              />
+            </span>
+          </div>
+        ))}
+      </div>
+      <div className="flex items-center gap-2 rounded-md border border-white/8 bg-white/[0.02] p-2">
+        <span className="size-3 shrink-0 rounded-full bg-current opacity-60" />
+        <span className="flex-1 space-y-1">
+          <Bar w="65%" />
+          <Bar w="35%" tone="dim" />
+        </span>
+        <span className="rounded-full bg-current px-1.5 py-0.5 font-sans text-[0.45rem] text-ink-950 opacity-90">
+          Onaylı
+        </span>
+      </div>
+    </div>
+  )
+}
+
 const MOCKS: Record<ProjectVisualKind, { label: string; body: () => React.ReactElement }> = {
   corporate: { label: 'kurumsal-site.tr', body: CorporateMock },
   booking: { label: 'randevu paneli', body: BookingMock },
@@ -279,6 +319,7 @@ const MOCKS: Record<ProjectVisualKind, { label: string; body: () => React.ReactE
   multibranch: { label: 'şube raporları', body: MultiBranchMock },
   membership: { label: 'üyelik platformu', body: MembershipMock },
   ecommerce: { label: 'e-ticaret sitesi', body: EcommerceMock },
+  erp: { label: 'işletme paneli', body: ErpMock },
 }
 
 type ProjectVisualProps = {

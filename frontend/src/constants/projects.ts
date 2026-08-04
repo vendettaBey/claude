@@ -159,4 +159,26 @@ export const projectScenarios: ProjectScenario[] = [
     visual: 'ecommerce',
     accent: '#fb923c',
   },
+  {
+    id: 'isletme-yonetim-sistemi',
+    title: 'İşletme Yönetim Sistemi (ERP/CRM)',
+    type: 'Web Uygulaması',
+    problem:
+      'Müşteri takibi, stok, muhasebe ve İK ayrı ayrı Excel dosyalarında veya birbiriyle konuşmayan hazır paketlerde tutuluyor; veriler tutarsızlaşıyor.',
+    scenario:
+      'Satış ekibi fırsatı CRM’de takip ediyor, onaylanan teklif otomatik siparişe dönüşüyor, stok ve muhasebe kayıtları aynı anda güncelleniyor; yönetici tek panelden şirketin tamamını görüyor.',
+    summary:
+      'CRM, stok, satış, muhasebe, İK ve üretim gibi ihtiyaç duyduğunuz modüllerin işletmenize özel geliştirilip tek sistemde birleştirilmesi.',
+    features: [
+      'CRM ve satış fırsatı yönetimi',
+      'Çoklu depo / stok takibi',
+      'Muhasebe ve nakit akışı raporları',
+      'İK, personel ve izin yönetimi',
+      'Üretim, reçete (BOM) ve maliyetlendirme',
+      'Yalnızca ihtiyacınız olan modüllerle kurulan, abonelik sınırı olmayan mimari',
+    ],
+    stack: ['Laravel', 'React', 'MySQL', 'Redis', 'Queue'],
+    visual: 'erp',
+    accent: '#60a5fa',
+  },
 ]
