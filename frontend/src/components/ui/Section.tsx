@@ -19,7 +19,7 @@ export function Section({ id, children, className, labelledBy }: SectionProps) {
       aria-labelledby={labelledBy}
       // Dikey ritim bilinçli olarak sıkılaştırıldı: bölümler nefes almaya devam
       // ederken toplam sayfa boyu belirgin biçimde kısalıyor.
-      className={cn('relative scroll-mt-24 py-14 sm:py-18 lg:py-24', className)}
+      className={cn('relative scroll-mt-24 py-12 sm:py-16 lg:py-20', className)}
     >
       {children}
     </section>

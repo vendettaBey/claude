@@ -14,12 +14,12 @@ export function Proof() {
     <Section
       id="referanslar"
       labelledBy="referanslar-baslik"
-      className="bg-ink-900/45 overflow-hidden border-y border-white/6"
+      className="reference-section bg-ink-900/45 overflow-hidden border-y border-white/6"
     >
       <AmbientBackground grid={false} intensity="soft" fadeBottom={false} />
 
       <div className="container-page relative">
-        <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_auto]">
+        <div className="grid items-end gap-6 lg:grid-cols-[minmax(0,1fr)_auto]">
           <SectionHeading
             id="referanslar-baslik"
             index="03"
@@ -32,15 +32,15 @@ export function Proof() {
             description="Hatice & Ömer için davet, katılım bildirimi ve etkinlik bilgilerini tek akışta buluşturan canlı bir web uygulaması geliştirdik."
           />
 
-          <Reveal direction="left" className="flex items-center gap-3 lg:pb-2">
-            <span className="font-display text-fg text-5xl font-semibold sm:text-6xl">01</span>
+          <Reveal direction="left" className="flex items-center gap-3 lg:pb-1">
+            <span className="font-display text-fg text-4xl font-semibold sm:text-5xl">01</span>
             <span className="text-fg-dim max-w-24 font-mono text-[0.65rem] leading-relaxed tracking-[0.16em] uppercase">
               Yayındaki proje
             </span>
           </Reveal>
         </div>
 
-        <div className="mt-12 grid items-start gap-7 lg:mt-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(400px,0.85fr)] lg:items-stretch">
+        <div className="mt-7 grid items-start gap-6 lg:mt-8 lg:grid-cols-[minmax(0,1.18fr)_minmax(390px,0.82fr)] lg:items-stretch">
           <Reveal3D offsetX={-46} tilt={7} depth={110} className="min-w-0 lg:h-full">
             <a
               href={project.url}

@@ -79,15 +79,42 @@ export function Process() {
       <AmbientBackground grid orbs={false} fadeBottom={false} />
 
       <div className="container-page">
-        <SectionHeading
-          id="surec-baslik"
-          index="04"
-          eyebrow="Çalışma Süreci"
-          segments={[{ text: 'Her adım görünür,' }, { text: 'her çıktı somut', highlight: true }]}
-          description="İhtiyaç analizinden yayına kadar ne yaptığımızı ve her aşamada elinize ne geçeceğini bilirsiniz."
-        />
+        <div className="process-intro grid items-end gap-10 border-b border-white/12 pb-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(420px,1.1fr)] lg:gap-16">
+          <SectionHeading
+            id="surec-baslik"
+            index="04"
+            eyebrow="Çalışma Süreci"
+            align="left"
+            segments={[{ text: 'Her adım görünür,' }, { text: 'her çıktı somut', highlight: true }]}
+            description="İhtiyaç analizinden yayına kadar ne yaptığımızı ve her aşamada elinize ne geçeceğini bilirsiniz."
+          />
 
-        <div ref={containerRef} className="relative mx-auto mt-16 max-w-2xl lg:mt-20">
+          <Reveal direction="left" className="process-route" delay={0.08}>
+            <div className="annotation text-fg-dim flex items-center justify-between">
+              <span>Proje rotası</span>
+              <span>01—07</span>
+            </div>
+            <ol className="mt-4 grid grid-cols-7" aria-label="Yedi aşamalı proje rotası">
+              {processSteps.map((step, index) => (
+                <li key={step.id} className="group relative border-t border-white/16 pt-5 text-center">
+                  <span aria-hidden="true" className="bg-ink-950 border-brand-500/55 absolute top-0 left-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border shadow-[0_0_12px_rgba(61,155,255,0.35)]" />
+                  <span className="text-brand-400 font-mono text-[0.7rem] tabular-nums">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="text-fg-dim mt-2 hidden font-mono text-[0.58rem] leading-tight tracking-wide uppercase sm:block">
+                    {step.title}
+                  </span>
+                </li>
+              ))}
+            </ol>
+            <div className="mt-5 flex items-center justify-between font-mono text-[0.62rem] tracking-[0.14em] uppercase">
+              <span className="text-fg-dim">Başlangıç / ihtiyaç</span>
+              <span className="text-brand-400">Canlı / gelişim</span>
+            </div>
+          </Reveal>
+        </div>
+
+        <div ref={containerRef} className="relative mx-auto mt-12 max-w-2xl lg:mt-16">
           {/* Dikey ray — tüm ekran genişliklerinde solda, tek sütunlu akış */}
           <div aria-hidden="true" className="absolute top-2 bottom-2 left-5 w-px bg-white/8">
             <span

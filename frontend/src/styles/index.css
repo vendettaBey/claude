@@ -713,7 +713,7 @@ html[data-theme='light'] .reference-details {
 /* Anotasyon metni: paftadaki elle yazılmış küçük teknik notların karşılığı. */
 @utility annotation {
   font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-fg-dim);
@@ -1027,7 +1027,7 @@ html[data-theme='light'] .reference-details {
 }
 @keyframes studio-halo-breathe {
   50% {
-    opacity: 0.68;
+    opacity: 0.58;
     transform: translate(-50%, -50%) scale(1.045);
   }
 }
@@ -1170,7 +1170,7 @@ html[data-theme='light'] .reference-details {
   gap: 10px;
   color: #8fa0ff;
   font:
-    650 9px/1 ui-monospace,
+    650 10px/1 ui-monospace,
     SFMono-Regular,
     Menlo,
     monospace;
@@ -1310,7 +1310,7 @@ html[data-theme='light'] .reference-details {
   margin-top: 19px;
   color: #74736f;
   font:
-    550 9px ui-monospace,
+    600 10px ui-monospace,
     SFMono-Regular,
     Menlo,
     monospace;
@@ -1351,6 +1351,7 @@ html[data-theme='light'] .reference-details {
   left: 50%;
   width: 680px;
   height: 680px;
+  opacity: 0.85;
   border-radius: 50%;
   background:
     radial-gradient(
@@ -1369,6 +1370,61 @@ html[data-theme='light'] .reference-details {
   transform: translate(-50%, -50%);
   animation: studio-halo-breathe 6s ease-in-out infinite;
   will-change: transform, opacity;
+}
+
+/* Sektör başlığının altında kalan alan, teknik ölçüm paneliyle bilinçli bir
+   dengeye dönüşür; sağdaki uzun indeksin yanında boş kolon hissi bırakmaz. */
+.industry-instrument-scale {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  align-items: end;
+  height: 52px;
+  border-left: 1px solid color-mix(in oklab, var(--color-brand-500) 30%, transparent);
+}
+
+.industry-instrument-scale i {
+  display: block;
+  height: 18px;
+  border-right: 1px solid color-mix(in oklab, var(--color-brand-500) 34%, transparent);
+  background: linear-gradient(to top, color-mix(in oklab, var(--color-brand-500) 7%, transparent), transparent);
+}
+
+.industry-instrument-scale i:nth-child(2n) {
+  height: 28px;
+}
+
+.industry-instrument-scale i:nth-child(3n) {
+  height: 42px;
+}
+
+.industry-instrument-scale i:last-child {
+  height: 52px;
+}
+
+/* Süreç bölümü artık yalnızca standart bölüm başlığıyla başlamaz: tüm akışı
+   tek bakışta gösteren yatay rota paftası ikinci bir başlık davranışı kurar. */
+.process-route {
+  position: relative;
+  padding: 24px;
+  border: 1px solid color-mix(in oklab, var(--color-fg) 11%, transparent);
+  background:
+    linear-gradient(145deg, color-mix(in oklab, var(--color-ink-800) 72%, transparent), transparent),
+    radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--color-brand-500) 11%, transparent), transparent 48%);
+  box-shadow: 0 22px 60px -48px color-mix(in oklab, var(--color-brand-500) 58%, transparent);
+}
+
+html[data-theme='light'] .process-route {
+  border-color: #8293aa;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(237, 244, 252, 0.86)),
+    radial-gradient(circle at 100% 0%, rgba(6, 72, 194, 0.1), transparent 48%);
+  box-shadow: 0 22px 50px -42px rgba(11, 23, 48, 0.58);
+}
+
+@media (width < 40rem) {
+  .process-route {
+    padding: 18px 14px;
+  }
 }
 .kinetic-halo::before,
 .kinetic-halo::after {
@@ -1720,7 +1776,7 @@ html[data-theme='light'] .theme-cta-surface {
   z-index: 6;
   color: #c9cbd3;
   font:
-    600 8px ui-monospace,
+    650 9px ui-monospace,
     SFMono-Regular,
     Menlo,
     monospace;
@@ -1939,16 +1995,27 @@ html[data-theme='light'] .orbit-ring .electron-hot {
 }
 
 html[data-theme='light'] .cube-face {
-  border-color: rgba(29, 63, 156, 0.68);
-  background: linear-gradient(145deg, rgba(74, 109, 218, 0.76), rgba(8, 24, 61, 0.9));
+  border-color: rgba(32, 91, 190, 0.48);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.62), rgba(115, 184, 255, 0.25) 42%, rgba(39, 82, 170, 0.42)),
+    radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.78), transparent 36%);
   box-shadow:
-    inset 0 0 42px rgba(159, 194, 255, 0.24),
-    0 0 26px rgba(40, 75, 170, 0.25),
-    0 18px 34px rgba(31, 54, 92, 0.18);
+    inset 0 0 34px rgba(103, 168, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 0 22px rgba(40, 99, 190, 0.18),
+    0 18px 34px rgba(31, 54, 92, 0.13);
 }
 
 html[data-theme='light'] .cube-face::before {
-  opacity: 0.68;
+  opacity: 0.48;
+  background-image:
+    linear-gradient(rgba(16, 72, 156, 0.13) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 72, 156, 0.13) 1px, transparent 1px);
+}
+
+html[data-theme='light'] .cube-face b {
+  color: #12366f;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
 }
 
 html[data-theme='light'] .kinetic-core {

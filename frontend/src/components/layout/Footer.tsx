@@ -36,7 +36,7 @@ export function Footer() {
           className="bg-grid pointer-events-none absolute inset-0 -z-10 opacity-40 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000,transparent_75%)]"
         />
 
-        <div className="container-page py-16 lg:py-20">
+        <div className="container-page py-12 lg:py-16">
           <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
             <div className="max-w-sm">
               <p className="font-display text-xl font-semibold">

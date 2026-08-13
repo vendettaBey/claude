@@ -13,7 +13,7 @@ export function CTA() {
   const { allowHeavy } = useMotionProfile()
 
   return (
-    <section aria-labelledby="cta-baslik" className="relative py-20 sm:py-24">
+    <section aria-labelledby="cta-baslik" className="relative py-14 sm:py-18 lg:py-20">
       <div className="container-page">
         <PointerGlow
           color="rgba(124,196,255,0.20)"
