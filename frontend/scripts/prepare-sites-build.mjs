@@ -1,4 +1,4 @@
-import { mkdir, readdir, rename, writeFile } from 'node:fs/promises'
+import { mkdir, readdir, rename, rm, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
 const outputDirectory = resolve('dist')
@@ -7,6 +7,10 @@ const serverDirectory = resolve('dist/server')
 const workerPath = resolve(serverDirectory, 'index.js')
 const wranglerPath = resolve(serverDirectory, 'wrangler.json')
 
+// Önceki Sites hazırlamasından kalan klasörler yeni Vite çıktısıyla çakışmamalı.
+// Böylece komut art arda veya bir doğrulama turundan sonra güvenle çalıştırılabilir.
+await rm(clientDirectory, { recursive: true, force: true })
+await rm(serverDirectory, { recursive: true, force: true })
 await mkdir(clientDirectory, { recursive: true })
 
 for (const entry of await readdir(outputDirectory)) {

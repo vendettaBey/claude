@@ -72,7 +72,7 @@ export function MobileMenu({ open, onClose, activeSection, isHome }: MobileMenuP
   const handleNavigate = (href: string) => {
     onClose()
     // Menü kapanma animasyonu bitince kaydır — iki hareket üst üste binmesin.
-    window.setTimeout(() => scrollToSection(href), reduced ? 0 : 240)
+    window.setTimeout(() => scrollToSection(href), reduced ? 0 : 150)
   }
 
   return (
@@ -90,12 +90,12 @@ export function MobileMenu({ open, onClose, activeSection, isHome }: MobileMenuP
           animate={{
             opacity: 1,
             clipPath: 'inset(0 0 0% 0)',
-            transition: { duration: reduced ? 0 : 0.42, ease: [0.16, 1, 0.3, 1] },
+            transition: { duration: reduced ? 0 : 0.28, ease: [0.16, 1, 0.3, 1] },
           }}
           exit={{
             opacity: 0,
             clipPath: 'inset(0 0 100% 0)',
-            transition: { duration: reduced ? 0 : 0.28, ease: [0.4, 0, 1, 1] },
+            transition: { duration: reduced ? 0 : 0.2, ease: [0.4, 0, 1, 1] },
           }}
         >
           <div aria-hidden="true" className="bg-dots pointer-events-none absolute inset-0 opacity-40" />
@@ -125,8 +125,8 @@ export function MobileMenu({ open, onClose, activeSection, isHome }: MobileMenuP
                       opacity: 1,
                       x: 0,
                       transition: {
-                        delay: reduced ? 0 : 0.1 + index * 0.05,
-                        duration: 0.45,
+                        delay: reduced ? 0 : 0.04 + index * 0.025,
+                        duration: 0.28,
                         ease: [0.16, 1, 0.3, 1],
                       },
                     }}
@@ -157,7 +157,7 @@ export function MobileMenu({ open, onClose, activeSection, isHome }: MobileMenuP
               animate={{
                 opacity: 1,
                 y: 0,
-                transition: { delay: reduced ? 0 : 0.42, duration: 0.5 },
+                transition: { delay: reduced ? 0 : 0.18, duration: 0.3 },
               }}
             >
               <Button

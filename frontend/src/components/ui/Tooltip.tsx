@@ -1,8 +1,10 @@
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
-import type { ReactNode } from 'react'
+import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { cn } from '@/lib/cn'
 
-export const TooltipProvider = TooltipPrimitive.Provider
+export function TooltipProvider(props: ComponentPropsWithoutRef<typeof TooltipPrimitive.Provider>) {
+  return <TooltipPrimitive.Provider {...props} />
+}
 
 type TooltipProps = {
   children: ReactNode

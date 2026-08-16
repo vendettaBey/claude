@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm, Controller, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ArrowLeft, ArrowRight, CheckCircle2, Loader2, Send } from 'lucide-react'
 import { budgetOptions, contactMethodOptions, serviceOptions } from '@/constants/form'
@@ -28,8 +28,6 @@ export function ContactForm() {
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
 
   // Aynı talebin iki kez gönderilmesini engelleyen kilit.
-  const submittedRef = useRef(false)
-  const abortRef = useRef<AbortController | null>(null)
 
   const {
     register,
@@ -38,7 +36,6 @@ export function ContactForm() {
     trigger,
     setError,
     setValue,
-    watch,
     formState: { errors, isSubmitting },
   } = useForm<QuoteRequestForm>({
     resolver: zodResolver(quoteRequestSchema),
@@ -53,8 +50,8 @@ export function ContactForm() {
     },
   })
 
-  const selectedService = watch('service_type')
-  const description = watch('project_description') ?? ''
+  const selectedService = useWatch({ control, name: 'service_type' })
+  const description = useWatch({ control, name: 'project_description' }) ?? ''
 
   // Hizmet kartlarındaki CTA'lar ilgili hizmeti önceden işaretler.
   useEffect(() => {
@@ -69,7 +66,6 @@ export function ContactForm() {
   }, [setValue])
 
   // Bileşen kaldırılırsa uçuşan isteği iptal et.
-  useEffect(() => () => abortRef.current?.abort(), [])
 
   const activeHint = serviceOptions.find((option) => option.value === selectedService)?.hint
 
@@ -81,12 +77,10 @@ export function ContactForm() {
     }
   }
 
-  const onSubmit = handleSubmit(async (values) => {
-    if (submittedRef.current) return
-    submittedRef.current = true
+  const submitValues = useCallback(async (values: QuoteRequestForm) => {
     setFormError(null)
 
-    abortRef.current = new AbortController()
+    const controller = new AbortController()
     const result = await submitQuoteRequest(
       {
         full_name: values.full_name,
@@ -99,7 +93,7 @@ export function ContactForm() {
         project_description: values.project_description,
         website: values.website || undefined,
       },
-      abortRef.current.signal,
+      controller.signal,
     )
 
     if (result.ok) {
@@ -109,7 +103,6 @@ export function ContactForm() {
     }
 
     // Hata durumunda kilidi aç — kullanıcı düzeltip tekrar deneyebilsin.
-    submittedRef.current = false
 
     const { message, fieldErrors } = result.error
     const entries = Object.entries(fieldErrors)
@@ -125,7 +118,9 @@ export function ContactForm() {
     }
 
     setFormError(message)
-  })
+  }, [setError])
+
+  const onSubmit = handleSubmit(submitValues)
 
   const progress = step === 0 ? 33 : step === 1 ? 66 : 100
 
@@ -462,7 +457,6 @@ export function ContactForm() {
                 onClick={() => {
                   // Yeni bir talep için formu sıfırlamak yerine kullanıcıyı
                   // bilinçli bir adımla başa döndürüyoruz.
-                  submittedRef.current = false
                   setSuccessMessage(null)
                   setStep(0)
                 }}

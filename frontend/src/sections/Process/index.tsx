@@ -101,7 +101,7 @@ export function Process() {
                   <span className="text-brand-400 font-mono text-[0.7rem] tabular-nums">
                     {String(index + 1).padStart(2, '0')}
                   </span>
-                  <span className="text-fg-dim mt-2 hidden font-mono text-[0.58rem] leading-tight tracking-wide uppercase sm:block">
+                  <span className="text-fg-dim mt-2 hidden font-mono text-[0.66rem] leading-tight tracking-[0.025em] uppercase sm:block">
                     {step.title}
                   </span>
                 </li>

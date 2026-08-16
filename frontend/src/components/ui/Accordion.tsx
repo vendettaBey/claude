@@ -7,7 +7,9 @@ import { cn } from '@/lib/cn'
  * Radix Accordion üzerine kurulu, Ülkü Yazılım tasarım diline göre
  * özelleştirilmiş akordeon. Klavye ve ekran okuyucu davranışı Radix'ten gelir.
  */
-export const Accordion = AccordionPrimitive.Root
+export function Accordion(props: ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>) {
+  return <AccordionPrimitive.Root {...props} />
+}
 
 export function AccordionItem({
   className,

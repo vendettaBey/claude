@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components -- Bu dosya bilinçli olarak rota yapılandırmasıdır. */
 import { lazy } from 'react'
 import type { RouteObject } from 'react-router-dom'
 import HomePage from '@/pages/HomePage'

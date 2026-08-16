@@ -36,7 +36,9 @@ export function scrollToSection(hash: string): boolean {
   const lenis = getLenisInstance()
 
   if (lenis && !reduced) {
-    lenis.scrollTo(target, { offset: -HEADER_OFFSET, duration: 1.1 })
+    // Uzak bölümlerde dahi geçiş bir saniyenin altında tamamlanır. Önceki
+    // 1.1 sn ayarı uzun sayfada dekoratif boşlukların fazla görünmesine yol açıyordu.
+    lenis.scrollTo(target, { offset: -HEADER_OFFSET, duration: 0.78 })
   } else {
     const top = target.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET
     window.scrollTo({ top, behavior: reduced ? 'auto' : 'smooth' })

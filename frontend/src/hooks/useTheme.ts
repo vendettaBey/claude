@@ -34,7 +34,7 @@ function applyTheme(theme: Theme, animate: boolean) {
   }
 
   if (animate) {
-    window.setTimeout(() => root.classList.remove('theme-transitioning'), 520)
+    window.setTimeout(() => root.classList.remove('theme-transitioning'), 360)
   }
 }
 
